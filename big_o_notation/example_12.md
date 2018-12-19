@@ -1,12 +1,14 @@
 # Example 12
 
 This code counts all permutations of a string.
+```
+
 void permutation(String str)
 {
   permutation(str, "");
 }
 
-```
+
 void permutation(String str, String prefix)
 {
   if (str.length() == 0)
@@ -25,15 +27,4 @@ void permutation(String str, String prefix)
 }
 ```
 
-Let n be the string length.
-
-i = 0
-  rem = string[0] + string[1]...
-
-i = 1
-
-i = 2
-...
-i = n
-
-For each i, the time cost = O(1) + 
+C_s = s * (C_{s-1} + O(1)) + O(s) => C_s = O(s * s!)
