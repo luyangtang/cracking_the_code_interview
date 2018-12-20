@@ -27,4 +27,4 @@ void permutation(String str, String prefix)
 }
 ```
 
-C_s = s * (C_{s-1} + O(1)) + O(s) => C_s = O(s * s!)
+![C_s = s \cdot (C_{s-1} + O(1)) + O(s)](https://latex.codecogs.com/svg.latex?C_s%20%3D%20s%20%5Ccdot%20%28C_%7Bs-1%7D%20&plus;%20O%281%29%29%20&plus;%20O%28s%29) gives ![C_s = O(s \cdot s!)](https://latex.codecogs.com/svg.latex?C_s%20%3D%20O%28s%20%5Ccdot%20s%21%29)
