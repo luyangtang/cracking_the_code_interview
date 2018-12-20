@@ -25,9 +25,10 @@ int powers0f2(int n)
 }
 ```
 
-Let n be some power of 2 (so there exists some non negative integer k such that 2^k = n) then
+Let n be some power of 2 (so there exists some non negative integer ![k](https://latex.codecogs.com/svg.latex?k) such that ![2^k = n](https://latex.codecogs.com/svg.latex?2%5Ek%20%3D%20n)) then
 
-T(2^k) = T(2^(k-1)) + c
-  = T(2^(k-2)) + 2c
-  = ...
-  = T(1) + kc = O(k) = O(log n)
+![T\left(2^k\right) = T\left(2^{k-1})\right) + c
+  = T(2^{k-2}) + 2c
+  = \ldots
+  = T(1) + kc = O(k) = O(\log n)
+](https://latex.codecogs.com/svg.latex?T%5Cleft%282%5Ek%5Cright%29%20%3D%20T%5Cleft%282%5E%7Bk-1%7D%29%5Cright%29%20&plus;%20c%20%3D%20T%282%5E%7Bk-2%7D%29%20&plus;%202c%20%3D%20%5Cldots%20%3D%20T%281%29%20&plus;%20kc%20%3D%20O%28k%29%20%3D%20O%28%5Clog%20n%29)
