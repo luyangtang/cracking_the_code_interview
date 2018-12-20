@@ -12,17 +12,5 @@ void reverse(int[] array)
   }
 }
 ```
-i = 0
-  other = n - 1
 
-i = 1
-  other = n - 2
-
-i = 2
-  other = n - 3
-...
-
-i = n/2
-  other = n - 4
-
-This is to reverse an array. The time complexity is O(N).
+This is to reverse an array. The time complexity is ![O\left(\frac{N}{2}\right) = O(N)](https://latex.codecogs.com/svg.latex?O%5Cleft%28%5Cfrac%7BN%7D%7B2%7D%5Cright%29%20%3D%20O%28N%29).
