@@ -16,4 +16,4 @@ System.out.println(sum + ", " + product);
 ```
 ##### Solution
 
-O(n + n) = O(2 \* n) = 2 \* O(n) = O(n)
+![](https://latex.codecogs.com/svg.latex?O%28n%20&plus;%20n%29%20%3D%20O%282%20%5C*%20n%29%20%3D%202%20%5C*%20O%28n%29%20%3D%20O%28n%29)
