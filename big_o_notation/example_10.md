@@ -23,14 +23,10 @@ boolean isPrime(int n)
   return true;
 }
 ```
-x = 2
-
-x = 3
-
-x = 4
+![x = 2, x = 3, x = 4](https://latex.codecogs.com/svg.latex?x%20%3D%202%2C%20x%20%3D%203%2C%20x%20%3D%204)
 
 ...
 
-x = floor(sqrt(n))
+![x = \text{floor}\left(\sqrt(n)\right)](https://latex.codecogs.com/svg.latex?x%20%3D%20%5Ctext%7Bfloor%7D%5Cleft%28%5Csqrt%28n%29%5Cright%29)
 
-So time complexity is O(floor(sqrt(n))) = O(n^0.5)
+So time complexity is ![O\left(\text{floor}(\sqrt(n))\right) = O\left(\sqrt{5}\right)](https://latex.codecogs.com/svg.latex?O%5Cleft%28%5Ctext%7Bfloor%7D%28%5Csqrt%28n%29%29%5Cright%29%20%3D%20O%5Cleft%28%5Csqrt%7B5%7D%5Cright%29)
