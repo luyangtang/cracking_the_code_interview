@@ -15,4 +15,4 @@ void printPairs(int[] array) {
 ```
 
 ##### Solution
-O(n) \* O(n) = O(n^2)
+!{}(https://latex.codecogs.com/svg.latex?O%28n%29%20*%20O%28n%29%20%3D%20O%28n%5E2%29)
