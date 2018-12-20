@@ -24,11 +24,11 @@ Let ![T(n)](https://latex.codecogs.com/svg.latex?T%28n%29) be the cost of `facto
 which gives ![T(n) = O(n)](https://latex.codecogs.com/svg.latex?T%28n%29%20%3D%20O%28n%29). So Time complexity is ![O(n)](https://latex.codecogs.com/svg.latex?O%28n%29).
 
 
-'''
+```
 factorial(n)
   -> n \* factorial(n-1)
     -> n \* (n-1) \* factorial(n-2)
       -> ...
         -> n \* (n-1) \* ... \* 1
         
-'''
+```
