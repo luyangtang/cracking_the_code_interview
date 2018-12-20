@@ -17,4 +17,4 @@ int div(int a, int b)
   return count;
 }
 ```
-T(a,b) = a/b (number of loops involved)
+![T(a,b) = \frac{a}{b}](https://latex.codecogs.com/svg.latex?T%28a%2Cb%29%20%3D%20%5Cfrac%7Ba%7D%7Bb%7D) (number of loops involved)
