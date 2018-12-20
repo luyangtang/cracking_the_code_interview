@@ -26,13 +26,13 @@ int fib(int n, int[] memo)
 }
 ```
 
-Let T(n) be the cost of running allFib(n) and t_i be the cost of running fib(i).
+Let ![T(n)](https://latex.codecogs.com/svg.latex?T%28n%29) be the cost of running `allFib(n)` and ![t_i](https://latex.codecogs.com/svg.latex?t_i) be the cost of running `fib(i)`.
 
-Then T(n) = sum_{i = 0}^{n-1} t_i where
+Then ![T(n) = \sum_{i = 0}^{n-1} t_i](https://latex.codecogs.com/svg.latex?T%28n%29%20%3D%20%5Csum_%7Bi%20%3D%200%7D%5E%7Bn-1%7D%20t_i) where
 
-t_i = (t_{i-1} + t_{i-2})\*1{i visited before} + O(1) (1 is the indicator function)
+![t_i = (t_{i-1} + t_{i-2})\cdot\mathbf1\{i \text{ visited before}\} + O(1)](https://latex.codecogs.com/svg.latex?t_i%20%3D%20%28t_%7Bi-1%7D%20&plus;%20t_%7Bi-2%7D%29%5Ccdot%5Cmathbf1%5C%7Bi%20%5Ctext%7B%20visited%20before%7D%5C%7D%20&plus;%20O%281%29) (![\mathbf 1](https://latex.codecogs.com/svg.latex?%5Cmathbf1) is the indicator function)
 
 So we have
 
-T(n) = sum_{i = 0}^{n-1} (t_{i-1} + t_{i-2})\*1{i visited before} + O(1)
-    = sum_{i = 0}^{n-1} O(1) = O(n) (by algebra of limit)
+![T(n) = \sum_{i = 0}^{n-1} (t_{i-1} + t_{i-2})\mathbf1\{i \text{ visited before}\} + O(1)
+    = \sum_{i = 0}^{n-1} O(1) = O(n)](https://latex.codecogs.com/svg.latex?T%28n%29%20%3D%20%5Csum_%7Bi%20%3D%200%7D%5E%7Bn-1%7D%20%28t_%7Bi-1%7D%20&plus;%20t_%7Bi-2%7D%29%5Cmathbf1%5C%7Bi%20%5Ctext%7B%20visited%20before%7D%5C%7D%20&plus;%20O%281%29%20%3D%20%5Csum_%7Bi%20%3D%200%7D%5E%7Bn-1%7D%20O%281%29%20%3D%20O%28n%29) (by algebra of limit)
