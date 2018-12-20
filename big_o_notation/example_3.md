@@ -16,12 +16,14 @@ void printUnorderedPairs(int[] array)
 ```
 
 ##### Solution
-When i = 0
-  j = 1, 2, 3, 4, ..., n
+When ![i = 0](https://latex.codecogs.com/svg.latex?i%20%3D%200)
 
-When i = 1
-  j = 2, 3, 4, ..., n
+  ![j = 1, 2, 3, 4, ..., n](https://latex.codecogs.com/svg.latex?j%20%3D%201%2C%202%2C%203%2C%204%2C%20%5Cldots%2C%20n)
 
-For i = i', there are (n - i' + 1) many j's
+When ![i = 1](https://latex.codecogs.com/svg.latex?i%20%3D%201)
 
-Complexity is sum(O(n - i + 1)) for i from 0 to n - 1 which equals O((n+1)\*n)- O((n-1)\*(n-1)/2) = O(n^2);
+  ![j = 2, 3, 4, ..., n](https://latex.codecogs.com/svg.latex?j%20%3D%202%2C%203%2C%204%2C%20...%2C%20n)
+
+For ![i = i'](https://latex.codecogs.com/svg.latex?i%20%3D%20i%27), there are ![(n - i' + 1)](https://latex.codecogs.com/svg.latex?%28n%20-%20i%27%20&plus;%201%29) many ![j](https://latex.codecogs.com/svg.latex?j)'s
+
+Complexity is ![\sum_{i = 0}^{n-1}O(n - i + 1)](https://latex.codecogs.com/svg.latex?%5Csum_%7Bi%20%3D%200%7D%5E%7Bn-1%7DO%28n%20-%20i%20&plus;%201%29) which equals ![O\left((n+1)n\right)- O\left(\frac{(n-1)^2}{2}\right) = O(n^2)](https://latex.codecogs.com/svg.latex?O%5Cleft%28%28n&plus;1%29n%5Cright%29-%20O%5Cleft%28%5Cfrac%7B%28n-1%29%5E2%7D%7B2%7D%5Cright%29%20%3D%20O%28n%5E2%29)
