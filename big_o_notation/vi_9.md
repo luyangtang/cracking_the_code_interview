@@ -32,3 +32,11 @@ int[] appendToNew(int[] array, int value)
   return bigger;
 }
 ```
+
+Suppose `array` has length ![n](http://latex.codecogs.com/gif.latex?n) and let the time complexity of `appendToNew` be ![T(n)](http://latex.codecogs.com/gif.latex?T%28n%29).
+
+![T(n) = O(n)](http://latex.codecogs.com/gif.latex?T%28n%29%20%3D%20O%28n%29) as can seen from the `for`-block.
+
+Let ![C(n)](http://latex.codecogs.com/gif.latex?C%28n%29) be the time complexity of `copyArray` then ![C(n) = \sum_{i=0}^{n-1}T(i) = \sum_{i=0}^{n-1}O(i) = O\left(\sum_{i=0}^{n-1}i\right) = O\left(\frac{(n-1)n}{2}\right) = O(n^2)](http://latex.codecogs.com/gif.latex?C%28n%29%20%3D%20%5Csum_%7Bi%3D0%7D%5E%7Bn-1%7DT%28i%29%20%3D%20%5Csum_%7Bi%3D0%7D%5E%7Bn-1%7DO%28i%29%20%3D%20O%5Cleft%28%5Csum_%7Bi%3D0%7D%5E%7Bn-1%7Di%5Cright%29%20%3D%20O%5Cleft%28%5Cfrac%7B%28n-1%29n%7D%7B2%7D%5Cright%29%20%3D%20O%28n%5E2%29)
+
+That is, the time complexity is ![O(n^2)](http://latex.codecogs.com/gif.latex?O%28n%5E2%29).
