@@ -13,6 +13,7 @@
 void testHashFunction();
 void testHashTable();
 void testMyHashTableOverload();
+void testCollision();
 
 
 #endif /* tests_h */

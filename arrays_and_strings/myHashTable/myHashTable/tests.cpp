@@ -50,3 +50,13 @@ void testMyHashTableOverload()
     std::cout << ht["ab"] << '\n';
     std::cout << ht["cd"] << '\n';
 }
+
+
+void testCollision()
+{
+    myHashTable ht;
+    ht.set("ab", 23);
+    std::cout << ht["ab"] << '\n';
+    ht.set("ba", 76);
+    std::cout << ht["ba"] << '\n';
+}

@@ -16,7 +16,8 @@ unsigned hashFunction(const char *s, const int maxIndex = MAX_INDEX);
 class myHashTable
 {
 private:
-    int max_index;
+    int max_index; // the size of the hash table
+    bool *defined; // an array keep track of keys defined
 public:
     int *arr;
     

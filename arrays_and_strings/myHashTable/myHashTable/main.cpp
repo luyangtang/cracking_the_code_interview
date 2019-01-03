@@ -10,13 +10,12 @@
 #include <string>
 #include "myHashTable.h"
 #include "tests.h"
-#define MAX_INDEX 1000
 
 
 
 int main() {
     // insert code here...
-    testMyHashTableOverload();
+    testCollision();
     
     return 0;
 }
