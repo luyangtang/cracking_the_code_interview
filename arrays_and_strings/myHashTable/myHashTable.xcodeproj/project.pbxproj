@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3CCCAE6E21DEBBBD00BDF4BA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCAE6D21DEBBBD00BDF4BA /* main.cpp */; };
+		3CCCAE7721DECD1C00BDF4BA /* myHashTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCAE7621DECD1C00BDF4BA /* myHashTable.cpp */; };
+		3CCCAE7921DECF4900BDF4BA /* tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCAE7821DECF4900BDF4BA /* tests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		3CCCAE6A21DEBBBD00BDF4BA /* myHashTable */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = myHashTable; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CCCAE6D21DEBBBD00BDF4BA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3CCCAE7421DECC9400BDF4BA /* myHashTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myHashTable.h; sourceTree = "<group>"; };
+		3CCCAE7521DECCF700BDF4BA /* tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tests.h; sourceTree = "<group>"; };
+		3CCCAE7621DECD1C00BDF4BA /* myHashTable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = myHashTable.cpp; sourceTree = "<group>"; };
+		3CCCAE7821DECF4900BDF4BA /* tests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tests.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				3CCCAE6D21DEBBBD00BDF4BA /* main.cpp */,
+				3CCCAE7421DECC9400BDF4BA /* myHashTable.h */,
+				3CCCAE7521DECCF700BDF4BA /* tests.h */,
+				3CCCAE7621DECD1C00BDF4BA /* myHashTable.cpp */,
+				3CCCAE7821DECF4900BDF4BA /* tests.cpp */,
 			);
 			path = myHashTable;
 			sourceTree = "<group>";
@@ -118,7 +128,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CCCAE7721DECD1C00BDF4BA /* myHashTable.cpp in Sources */,
 				3CCCAE6E21DEBBBD00BDF4BA /* main.cpp in Sources */,
+				3CCCAE7921DECF4900BDF4BA /* tests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

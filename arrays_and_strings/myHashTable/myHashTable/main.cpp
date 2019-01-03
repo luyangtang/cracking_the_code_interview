@@ -7,30 +7,16 @@
 //
 
 #include <iostream>
+#include <string>
+#include "myHashTable.h"
+#include "tests.h"
+#define MAX_INDEX 1000
 
-unsigned hashFunction(const char *s)
-{
-    // sum up the char (int)
-    unsigned hash = 0;
-    
-    while(*s)
-    {
-        hash += *(s++);
-    }
-    
-    return hash;
-}
-
-void testHashFunction()
-{
-    std::cout << hashFunction("ab") << '\n';
-    std::cout << hashFunction("ba") << '\n';
-    std::cout << hashFunction("abc") << '\n';
-}
 
 
 int main() {
     // insert code here...
-    testHashFunction();
+    testMyHashTableOverload();
+    
     return 0;
 }
