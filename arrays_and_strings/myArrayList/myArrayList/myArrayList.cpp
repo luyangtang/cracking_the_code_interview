@@ -6,11 +6,11 @@
 //  Copyright © 2019 Kiki Tan. All rights reserved.
 //
 
-// ConsoleApplication2.cpp : Defines the entry point for the console application.
-//
 
 
 #include <iostream>
+#include "myArrayList.h"
+
 
 void printArray(int arr[], int arrSize)
 /* this function prints out the array in one line
@@ -37,23 +37,6 @@ returns yes if there is a need to double capacity */
 }
 
 
-class myArrayList
-{
-private:
-	int *arr;
-	int arrSize;
-	int capacity;
-
-public:
-	// constructor (default)
-	myArrayList(int newArrSize = 1);
-
-	// destructor
-	~myArrayList();
-
-	// add a new value to the vector
-	void pushBack(int newVal);
-};
 
 
 // define constructor
@@ -115,17 +98,9 @@ void myArrayList::pushBack(int newVal)
 
 void testPushBack()
 {
-	myArrayList al(1);
-	for (int i = 1; i < 10; i++)
+	myArrayList al(2);
+	for (int i = 3; i < 20; i++)
 	{
 		al.pushBack(i);
 	}
-}
-
-
-int main(int argc, const char * argv[]) {
-	// insert code here...
-	testPushBack();
-
-	return 0;
 }
