@@ -1,29 +1,15 @@
 //
-//  main.cpp
+//  myArrayList.cpp
 //  myArrayList
 //
 //  Created by LYT on 02/01/2019.
-//  Copyright Â© 2019 Kiki Tan. All rights reserved.
+//  Copyright © 2019 Kiki Tan. All rights reserved.
 //
-
-
 
 #include <iostream>
 #include "myArrayList.h"
 
 
-void printArray(int arr[], int arrSize)
-/* this function prints out the array in one line
-separated by whitespace */
-
-{
-	std::cout << '(';
-	// print out each element sequentially
-	for (int i = 0; i < arrSize; i++)
-		std::cout << arr[i] << ',';
-	// break the line at the end
-	std::cout << ")\n";
-}
 
 
 bool doubleCapacity(const int capacity, const int arrSize)
@@ -40,34 +26,44 @@ returns yes if there is a need to double capacity */
 
 
 // define constructor
-myArrayList::myArrayList(int newArrSize)
+template <class T>
+myArrayList<T>::myArrayList(const int newArrSize)
 {
 	// assig the array size
 	arrSize = newArrSize;
 	// new array object
-	arr = new int[newArrSize] {0};
+	arr = new T[newArrSize] {0};
 	// default capacity
 	capacity = newArrSize;
 
 	// dummy codes
 	std::cout << "New vector constructed ";
-	printArray(arr, arrSize);
+
+	// print the array
+	this->print();
 }
 
+
+
 // define destructor
-myArrayList::~myArrayList()
+template <class T>
+myArrayList<T>::~myArrayList()
 {
 	//delete arr;
 	std::cout << "Object destructed\n";
 }
 
+
+
+
 // define pushBack()
-void myArrayList::pushBack(int newVal)
+template <class T>
+void myArrayList<T>::pushBack(const T newVal)
 {
 	if (doubleCapacity(capacity, arrSize))
 	{
 		// create a new array with twice as big as arr
-		int *newArr = new int[2 * capacity]{ 0 };
+		T *newArr = new T[2 * capacity]{ 0 };
 
 		// copy all existing elements to the new array.
 		for (int i = 0; i < arrSize; i++)
@@ -91,16 +87,29 @@ void myArrayList::pushBack(int newVal)
 	// update arrSize
 	arrSize++;
 
-	// print the array
-	printArray(arr, arrSize);
 }
 
 
-void testPushBack()
+
+
+template <class T>
+void myArrayList<T>::print()
 {
-	myArrayList al(2);
-	for (int i = 3; i < 20; i++)
+	std::cout << '(';
+
+	// print each of the entries
+	for (int i = 0; i < arrSize; i++)
 	{
-		al.pushBack(i);
+		std::cout << arr[i] << ',';
 	}
+
+	std::cout << ")\n";
+}
+
+
+void myArrayListTmpFunc()
+{
+	// to trick the linker
+	myArrayList<int> al;
+	al.pushBack(0);
 }
