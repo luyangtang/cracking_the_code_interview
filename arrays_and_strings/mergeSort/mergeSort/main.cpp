@@ -78,8 +78,8 @@ void testMerge()
 
 int* mergeSort(int arr[], int arrSize)
 {
-    int midInd = arrSize / 2 + 1; // half of the length
-    int *a ; int *b;
+    int midInd = (arrSize + 1) / 2; // half of the length
+    int sizeA = midInd; int sizeB = arrSize - midInd;
 
     if (arrSize == 1)
     {
@@ -88,30 +88,47 @@ int* mergeSort(int arr[], int arrSize)
     else
     {
         // split the array into two
-        a = arr;
-        b = arr+midInd;
+        int *a = new int[midInd];
+        int *b = new int[arrSize - midInd];
+        
+        // copy over a and b
+        int i = 0;
+        for (i; i < sizeA; i++)
+        {
+            a[i] = arr[i];
+        }
+        for (int j = 0; j < sizeB; j++)
+        {
+            b[j] = arr[i++];
+        }
         
         // call recursion
-        int *sortedA = mergeSort(a, midInd);
-        int *sortedB = mergeSort(b, arrSize - midInd);
+        a = mergeSort(a, sizeA);
+//        for (int k = 0; k < sizeA; k++)
+//            std::cout << a[k] << ' ';
+//        std::cout << '\n';
+        
+        b = mergeSort(b, sizeB);
+//        for (int k = 0; k < sizeB; k++)
+//            std::cout << b[k] << ' ';
+//        std::cout << '\n';
         
         // merge
-        return merge(sortedA, sortedB, midInd, arrSize - midInd);
+        int *merged = merge(a, b, sizeA, sizeB);
+        return merged;
     }
 }
 
 
 int main() {
     
-//    int arr[] = {94,146,28, 24,1,1, 9, 32,100000,3};
-//    int *sortedArr = mergeSort(arr, sizeof(arr)/sizeof(int));
-//
-//    for (int i = 0; i < sizeof(sortedArr)/sizeof(int); i++)
-//    {
-//        std::cout << sortedArr[i] << ' ';
-//    }
-    
-    testMerge();
+    int arr[] = {94,146,28, 24,1,1, 9, 32,100000,3};
+    int *sortedArr = mergeSort(arr, sizeof(arr)/sizeof(int));
+
+    for (int i = 0; i < sizeof(arr)/sizeof(int); i++)
+    {
+        std::cout << sortedArr[i] << ' ';
+    }
     
     return 0;
 }
