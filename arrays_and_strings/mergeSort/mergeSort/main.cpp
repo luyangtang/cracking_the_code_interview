@@ -161,8 +161,57 @@ void splitArrayFull(int arr[], int arrSize)
         std::cout << " and ";
         printArray(b, arrSize - splitInd);
         std::cout << '\n';
+        
+        
+        // merge a and b
+        int *newarr = merge(a, b, splitInd, arrSize - splitInd);
+        
+        delete[] a;
+        delete[] b;
+        
+        std::cout << ", which merge in to ";
+        printArray(newarr, arrSize);
+        std::cout << "\n\n";
     }
 }
+
+
+int *mergeSortNew(int arr[], int arrSize)
+{
+    if(arrSize == 1)
+    {
+        return arr;
+    }
+    else
+    {
+        int splitInd = arrSize/2;
+        int *a = new int[splitInd];
+        int *b = new int[arrSize - splitInd];
+        for (int i = 0; i < arrSize; i++)
+        {
+            if(i < splitInd)
+                a[i] = arr[i];
+            else
+                b[i - splitInd] = arr[i];
+        }
+        printArray(arr, arrSize);
+        std::cout << " splits into ";
+        printArray(a, splitInd);
+        std::cout << " and ";
+        printArray(b, arrSize - splitInd);
+        std::cout << '\n';
+        
+        return arr;
+    }
+}
+
+
+void SplitArrayFullSorted()
+{
+    int arr1[] = {1,3,4,6,7,10};
+    splitArrayFull(arr1,sizeof(arr1)/sizeof(int));
+}
+
 
 void testSplitArrayfull()
 {
@@ -209,7 +258,7 @@ int main() {
 //    {
 //        std::cout << sortedArr[i] << ' ';
 //    }
-    testSplitArrayfull();
+    SplitArrayFullSorted();
     
     return 0;
 }
