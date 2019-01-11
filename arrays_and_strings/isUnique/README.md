@@ -9,6 +9,6 @@ In [`mySolution.cpp`](./isUnique/mySolution.cpp) I used nested while-loop to do 
 Unfortunately it has the worst performance.
 
 [Geeks for geeks](https://www.geeksforgeeks.org/determine-string-unique-characters/) has provided multiple approaches:
- - Approach 2 – Sorting
+ - [Approach 2 – Sorting](./isUnique/usingSort.cpp)
  - Approach 3 – Use of Extra Data Structure
  - Approach 4 – Without Extra Data Structure
