@@ -8,15 +8,18 @@
 
 #include <iostream>
 #include <utility>
-#include "mySolution.h"
-#include "usingSort.hpp"
+//#include "mySolution.h"
+#include "usingExtraDataStructure.hpp"
+#define MAX_CHAR 256
 
 
 
 
 int main() {
     
-    testIsUnique2();
+    testIsUniqueExtraData();
+    
+    
 
     
     return 0;
