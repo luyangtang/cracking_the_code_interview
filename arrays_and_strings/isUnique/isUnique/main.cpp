@@ -9,17 +9,16 @@
 #include <iostream>
 #include <utility>
 //#include "mySolution.h"
-#include "usingExtraDataStructure.hpp"
-#define MAX_CHAR 256
+//#include "usingExtraDataStructure.hpp"
+//#define MAX_CHAR 256
+#include "usingBitwise.hpp"
 
 
 
 
 int main() {
     
-    testIsUniqueExtraData();
-    
-    
+    testIsUniqueBitwise();
 
     
     return 0;
