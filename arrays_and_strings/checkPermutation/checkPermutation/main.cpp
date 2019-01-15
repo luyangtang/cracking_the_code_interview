@@ -9,15 +9,14 @@
 #include <iostream>
 #include <utility>
 #include <string>
-#include "mySolution2.hpp"
+#include "isPermutationOptimised.hpp"
+
+
 
 
 int main() {
-    
-    
-    testIsPermute();
-    
-    
-    
+
+    testIsPermutationOptimised();
+
     return 0;
 }

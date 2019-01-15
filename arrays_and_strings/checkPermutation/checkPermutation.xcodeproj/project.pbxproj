@@ -10,6 +10,7 @@
 		3C95B1F421ED5050003373C3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C95B1F321ED5050003373C3 /* main.cpp */; };
 		3C95B1FC21ED53B3003373C3 /* mySolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C95B1FA21ED53B3003373C3 /* mySolution.cpp */; };
 		3C95B1FF21EE93D4003373C3 /* mySolution2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C95B1FD21EE93D4003373C3 /* mySolution2.cpp */; };
+		3C95B20221EE96D8003373C3 /* isPermutationOptimised.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C95B20021EE96D8003373C3 /* isPermutationOptimised.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		3C95B1FB21ED53B3003373C3 /* mySolution.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mySolution.hpp; sourceTree = "<group>"; };
 		3C95B1FD21EE93D4003373C3 /* mySolution2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mySolution2.cpp; sourceTree = "<group>"; };
 		3C95B1FE21EE93D4003373C3 /* mySolution2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mySolution2.hpp; sourceTree = "<group>"; };
+		3C95B20021EE96D8003373C3 /* isPermutationOptimised.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = isPermutationOptimised.cpp; sourceTree = "<group>"; };
+		3C95B20121EE96D8003373C3 /* isPermutationOptimised.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = isPermutationOptimised.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,8 @@
 				3C95B1F321ED5050003373C3 /* main.cpp */,
 				3C95B1FA21ED53B3003373C3 /* mySolution.cpp */,
 				3C95B1FD21EE93D4003373C3 /* mySolution2.cpp */,
+				3C95B20021EE96D8003373C3 /* isPermutationOptimised.cpp */,
+				3C95B20121EE96D8003373C3 /* isPermutationOptimised.hpp */,
 				3C95B1FE21EE93D4003373C3 /* mySolution2.hpp */,
 				3C95B1FB21ED53B3003373C3 /* mySolution.hpp */,
 			);
@@ -129,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C95B1FF21EE93D4003373C3 /* mySolution2.cpp in Sources */,
+				3C95B20221EE96D8003373C3 /* isPermutationOptimised.cpp in Sources */,
 				3C95B1FC21ED53B3003373C3 /* mySolution.cpp in Sources */,
 				3C95B1F421ED5050003373C3 /* main.cpp in Sources */,
 			);
