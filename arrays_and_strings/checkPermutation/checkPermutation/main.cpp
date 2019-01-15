@@ -9,13 +9,15 @@
 #include <iostream>
 #include <utility>
 #include <string>
-#include "mySolution.hpp"
-
+#include "mySolution2.hpp"
 
 
 int main() {
     
-    testMySolution();
+    
+    testIsPermute();
+    
+    
     
     return 0;
 }
