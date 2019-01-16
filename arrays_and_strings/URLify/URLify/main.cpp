@@ -7,16 +7,12 @@
 //
 
 #include <iostream>
+#include "mySolution.hpp"
+
+
 
 int main() {
-    char const *string = "Mr John Smith        "; // assume there are enough space to hold %20
     
-    /* My approach is to compute this mathematically.
-     suppose there are spaces at ith, jth and kth
-     then copy
-     before 1st space: 0, 1, 2, ..., i-1 copied[index] = original[index]
-     ...
-     before ith space: ((i-1) + i*3), ..., ((j-1)  + i*3)
-     */
-    
+    printString(urlify("Mr John Smith        ",21));
+    return 0;
 }
