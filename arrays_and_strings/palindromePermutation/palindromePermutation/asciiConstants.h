@@ -11,13 +11,13 @@
 
 namespace asciiConstants
 {
-    int MIN_CAP = 65;
-    int MAX_CAP = 90;
-    int MIN_LOW = 97;
-    int MAX_LOW = 122;
-    int MIN_INT = 60;
-    int MAX_INT = 71;
-    int MAX_CHAR = 256;
+    extern int MIN_CAP;
+    extern int MAX_CAP;
+    extern int MIN_LOW;
+    extern int MAX_LOW;
+    extern int MIN_INT;
+    extern int MAX_INT;
+    extern int MAX_CHAR;
     
 }
 

@@ -7,14 +7,30 @@
 //
 
 #include <iostream>
-#include "mySolution.hpp"
+#include "asciiConstants.h"
+//#include "mySolution.hpp"
+#include "mySolution2.hpp"
+
+
+
+
 
 
 
 int main() {
     
+    /* during my first attempt, seems we only need to look at alphabets,
+     in particular, lower case alphabets
+     need a function to map character to 0 to 25
+     */
     
-    testIsPalindromeWord();
+    isPalindromeWord2("hello");
+    
+
+    
+    
+    
+    
     return 0;
     
 }

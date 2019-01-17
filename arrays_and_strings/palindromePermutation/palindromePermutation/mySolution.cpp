@@ -10,6 +10,7 @@
 #include "asciiConstants.h"
 #include <iostream>
 
+
 bool isPalindromeWord(char const *string)
 {
     // check if a simple word is palindrome
