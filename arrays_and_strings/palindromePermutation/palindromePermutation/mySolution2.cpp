@@ -56,22 +56,45 @@ void testAlphabetMap()
 
 bool isPalindromeWord2(char const *string)
 {
+    using namespace asciiConstants;
+    
     int countHolder = 0;
     
     int i = 0;
     while (string[i]!='\0')
     {
-        // toggle that bit
+        // toggle that bit, ignore special characters
+        
+        if ((string[i] >= MIN_LOW && string[i] << MAX_LOW) ||
+            (string[i] >= MIN_CAP && string[i] << MAX_CAP))
         countHolder = countHolder ^ (1 << alphabetMap(string[i]));
         i++;
     }
     
-    
-    
-    /*
-     Need to find a way to check how many 1's in the binary
-     */
-    
-    return true;
+    if ((checkExactlyOneNonZero(countHolder) || countHolder == 0))
+    {
+        std::cout << 1 << '\n';
+        return true;
+    }
+    else
+    {
+        std::cout << 0 << '\n';
+        return false;
+    }
 }
 
+
+bool checkExactlyOneNonZero(int bitInt)
+{
+    return ((bitInt & (bitInt-1)) == 0);
+}
+
+
+
+void testCheckExactlyOneNonZero()
+{
+    std::cout << checkExactlyOneNonZero(2) << '\n';
+    std::cout << checkExactlyOneNonZero(3) << '\n';
+    std::cout << checkExactlyOneNonZero(4) << '\n';
+    std::cout << checkExactlyOneNonZero(5) << '\n';
+}

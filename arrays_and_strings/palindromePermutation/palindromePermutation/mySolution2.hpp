@@ -14,5 +14,8 @@
 int alphabetMap(char alphabet);
 void testAlphabetMap();
 bool isPalindromeWord2(char const *string);
+bool checkExactlyOneNonZero(int bitInt);
+void testCheckExactlyOneNonZero();
+
 
 #endif /* mySolution2_hpp */
