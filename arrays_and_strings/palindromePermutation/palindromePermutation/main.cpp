@@ -14,7 +14,7 @@
 int main() {
     
     
-    testIsParlindromeWord();
+    testIsPalindromeWord();
     return 0;
     
 }

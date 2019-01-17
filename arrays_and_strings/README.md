@@ -11,6 +11,6 @@
 4. [isUnique](./isUnique)
 5. [checkPermutation](./checkPermutation)
 6. [URLify](./URLify)
-7. [parlindromePermutation](./parlindromePermutation)
+7. [palindromePermutation](./palindromePermutation)
 
 Implementation of my own version of `arrayList`, `hashTable` and `stringBuilder`, followed by interview question exercises.

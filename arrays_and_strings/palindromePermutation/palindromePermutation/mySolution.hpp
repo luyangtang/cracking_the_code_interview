@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-bool isParlindromeWord(char const *string);
-void testIsParlindromeWord();
+bool isPalindromeWord(char const *string);
+void testIsPalindromeWord();
 
 #endif /* mySolution_hpp */

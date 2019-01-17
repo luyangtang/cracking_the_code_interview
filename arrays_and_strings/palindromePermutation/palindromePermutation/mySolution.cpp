@@ -10,9 +10,9 @@
 #include "asciiConstants.h"
 #include <iostream>
 
-bool isParlindromeWord(char const *string)
+bool isPalindromeWord(char const *string)
 {
-    // check if a simple word is parlindrome
+    // check if a simple word is palindrome
     // word: without special characters
     // supports capitals
     using namespace asciiConstants;
@@ -73,27 +73,27 @@ bool isParlindromeWord(char const *string)
 }
 
 
-void testIsParlindromeWord()
+void testIsPalindromeWord()
 {
     std::cout << "the following words are Pardindrome\n";
-    isParlindromeWord("R...acecar");
-    isParlindromeWord("repape!r");
-    isParlindromeWord("soLos");
-    isParlindromeWord("ra,cecar");
-    isParlindromeWord("stats");
-    isParlindromeWord("reddEr");
-    isParlindromeWord("aaaa   Aaaaaa aaaa");
-    isParlindromeWord("00000000000");
-    isParlindromeWord("wasitacatisaW");
+    isPalindromeWord("R...acecar");
+    isPalindromeWord("repape!r");
+    isPalindromeWord("soLos");
+    isPalindromeWord("ra,cecar");
+    isPalindromeWord("stats");
+    isPalindromeWord("reddEr");
+    isPalindromeWord("aaaa   Aaaaaa aaaa");
+    isPalindromeWord("00000000000");
+    isPalindromeWord("wasitacatisaW");
     
     std::cout << "\nthe following words are not Pardindrome\n";
-    isParlindromeWord("My");
-    isParlindromeWord("hello  world");
-    isParlindromeWord("it!hinkyouaRewrong");
-    isParlindromeWord("callmema.ybe");
-    isParlindromeWord("M aybe");
-    isParlindromeWord("yoU");
-    isParlindromeWord("It");
-    isParlindromeWord("102"); // does not work for numbers
+    isPalindromeWord("My");
+    isPalindromeWord("hello  world");
+    isPalindromeWord("it!hinkyouaRewrong");
+    isPalindromeWord("callmema.ybe");
+    isPalindromeWord("M aybe");
+    isPalindromeWord("yoU");
+    isPalindromeWord("It");
+    isPalindromeWord("102"); // does not work for numbers
 }
 
