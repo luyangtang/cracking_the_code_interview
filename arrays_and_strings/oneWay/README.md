@@ -2,4 +2,7 @@
 
 *One Away*: There are three types of edits that can be performed on strings: insert a character, remove a character, or replace a character. Given two strings, write a function to check if they are one edit (or zero edits) away.
 
-mySolution is to compare the composition of two strings (character elements and their counts) using two bit vectors. Mark the number of differences by bitwise comparison. As we need to scan through three vectors: `sting1`, `string2` and the bit vector (invariant length), the time complexity is ![O(s_1s_2)](https://latex.codecogs.com/gif.latex?O%28s_1s_2%29).
+- mySolution: sort characters in both strings. We need four integer arrays and two bit vectors to compare.
+  1. Scan both `string1` and `string2` and for each string, record the unique characters in order, the number of occurrence of the characters, represented by a *hash table* and the size of the string `int stringLen`.
+  2. If two sizes are the same, then we need to check if it is a replacement using a bit vector which should have exactly 1 `1`.
+  3. If two sizes differ by 1, then only 1 key is allowed to have a different value, which can't differ by more than 2.

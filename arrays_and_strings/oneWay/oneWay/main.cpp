@@ -13,83 +13,80 @@
 
 
 #include <iostream>
-// #include <bitset>
 #define MAX_CHAR 256
 
-void countChar(char const *string, int charCounter[])
+int* buildHashTable(char const *string, int &stringLen)
 {
+    int *hashTbl = new int[MAX_CHAR]{0};
     int i = 0; // index to loop through the string
     while(string[i]!='\0')
     {
-        charCounter[string[i++]]++;
+        // populate the hash table
+        hashTbl[string[i++]]++;
+        
+        // update the string length
+        stringLen++;
     }
+    
+    return hashTbl;
 }
 
 
-bool checkExactlyOneNoneZero(int bitVector)
-{
-    return ((bitVector & (bitVector - 1)) == 0);
-}
 
 
-bool checkOneWay(char const *string1, char const *string2)
+void testHashTable()
 {
-    int charCounter1[MAX_CHAR] = {0};
-    int charCounter2[MAX_CHAR] = {0};
+    char const *string1 = "pale";
+    // construct the hash tabls
+    int stringLen1 = 0;
+    int *hashTbl1 = buildHashTable(string1,stringLen1);
     
-    countChar(string1,charCounter1);
-    countChar(string2,charCounter2);
-    
-    int bitCompare = 0; // bit vector to compare charCounter1 and charCounter2
-    
-    for (int j = 0; j < MAX_CHAR; j++)
+    for (int j = 0 ; j < MAX_CHAR; j++)
     {
-        if(charCounter1[j]!=charCounter2[j])
-        {
-            // if the pair are not equal, then 'toggle' the j-th entry in the bit vector
-            // toggle is the same as turn on because we only scan it in the same direction once
-            bitCompare |= (1 << j);
-        }
+        std::cout << hashTbl1[j];
     }
     
-    //    std::bitset<32> x(bitCompare);
-    //    std::cout << x << '\n';
-    
-    // check if there is exactly one 1 in the bit vector
-    return checkExactlyOneNoneZero(bitCompare);
+    std::cout << '\n';
+    std::cout << stringLen1;
 }
 
 
 int main() {
-//
-//    char const *string1 = "pale";
-//    char const *string2 = "ale";
-    
-    // test insertion
-    // ---
-    std::cout << (checkOneWay("pale", "palet")? 'y':'n') << '\n';
-    std::cout << (checkOneWay("tiger", "ttiger")? 'y':'n') << '\n';
-    std::cout << (checkOneWay("flower", "flowers")? 'y':'n') << '\n';
-    // ---
-    std::cout << (checkOneWay("pale", "bppale")? 'n':'y') << '\n';
-    std::cout << (checkOneWay("pale", "baale")? 'n':'y') << '\n';
-    std::cout << (checkOneWay("pale", "balee")? 'n':'y') << '\n';
+
+    char const *string1 = "pale";
+    char const *string2 = "papp";
+
+    // construct the hash tabls
+    int stringLen1 = 0;
+    int stringLen2 = 0;
+    int *hashTbl1 = buildHashTable(string1,stringLen1);
+    int *hashTbl2 = buildHashTable(string2,stringLen2);
     
     
-    // test removal
-    // ----
-    std::cout << (checkOneWay("pale", "ale")? 'y':'n') << '\n';
-    std::cout << (checkOneWay("tiger", "tige")? 'y':'n') << '\n';
-    std::cout << (checkOneWay("ginger", "inger")? 'y':'n') << '\n';
-    std::cout << (checkOneWay("pales", "pale")? 'y':'n') << '\n';
-    // ----
-    
-    // test replacement
-    std::cout << (checkOneWay("pale", "bale")? 'y':'n') << '\n';
-    std::cout << (checkOneWay("pale", "pole")? 'y':'n') << '\n';
-    std::cout << (checkOneWay("pale", "pald")? 'y':'n') << '\n';
-    
-    
+    int differentHashTableValueCount = 0;
+    int offsetSum = 0;
+    if (stringLen1 == stringLen2)
+    {
+        // returns true only if it is a replacement
+        // loop through the keys and find if one change is offset by the other (sum to 0)
+        for (int i = 0; i < MAX_CHAR; i++)
+        {
+            if(hashTbl1[i]!=hashTbl2[i])
+            {
+                offsetSum += (hashTbl1[i]-hashTbl2[i]); // update offset
+                if (differentHashTableValueCount++ > 2) // can't have more than 2 different values in the hash table
+                {
+                    break;
+                    std::cout << "This can't be a replacement\n";
+                }
+            }
+        }
+        if(offsetSum==0)
+        {
+            std::cout << offsetSum;
+            std::cout << "This may be a replacement\n";
+        }
+    }
     
     return 0;
 }
