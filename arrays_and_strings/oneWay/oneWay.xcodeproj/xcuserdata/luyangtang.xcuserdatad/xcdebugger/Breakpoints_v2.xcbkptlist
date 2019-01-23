@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "oneWay/main.cpp"
-            timestampString = "569892697.8837481"
+            filePath = "oneWay/mySolution.cpp"
+            timestampString = "569978696.064368"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "main()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "isInsert(char const *originalString, char const *newString)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
