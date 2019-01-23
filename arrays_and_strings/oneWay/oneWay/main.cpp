@@ -17,19 +17,9 @@
 
 
 
-
-
-
 int main() {
     
-    
-    std::cout << isInsert("apple","apples") << '\n';
-    std::cout << isInsert("apple","aapple") << '\n';
-    std::cout << isInsert("apple","apple") << '\n';
-    std::cout << isInsert("apple","appless") << '\n';
-    std::cout << isInsert("apple","applesm") << '\n';
-    std::cout << isInsert("apple","apppple") << '\n';
-    
+    testIsOneWay();
     
     return 0;
 }

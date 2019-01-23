@@ -12,7 +12,10 @@
 #include <stdio.h>
 
 bool isReplacement(char const *string1, char const *string2);
-bool isInsert(char const *originalString, char const *newString);
+bool isInsert(char const *originalString, char const *newString, int strLen1, int strLen2);
 void testIsReplacement();
+void testIsInsert();
+bool isOneWay(char const *string1, char const *string2, int strLen1, int strLen2);
+void testIsOneWay();
 
 #endif /* mySolution_hpp */
