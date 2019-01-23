@@ -13,5 +13,6 @@
 6. [URLify](./URLify)
 7. [palindromePermutation](./palindromePermutation)
 8. [oneWay](./oneWay)
+9. [stringCompression](./stringCompression)
 
 Implementation of my own version of `arrayList`, `hashTable` and `stringBuilder`, followed by interview question exercises.
