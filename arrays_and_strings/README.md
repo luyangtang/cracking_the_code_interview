@@ -14,5 +14,6 @@
 7. [palindromePermutation](./palindromePermutation)
 8. [oneWay](./oneWay)
 9. [stringCompression](./stringCompression)
+10. [rotateMatrix](./rotateMatrix)
 
 Implementation of my own version of `arrayList`, `hashTable` and `stringBuilder`, followed by interview question exercises.
