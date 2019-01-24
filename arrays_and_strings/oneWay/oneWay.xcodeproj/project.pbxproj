@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C95B24221F7BC84003373C3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C95B24121F7BC84003373C3 /* main.cpp */; };
 		3C95B24A21F91D28003373C3 /* mySolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C95B24821F91D28003373C3 /* mySolution.cpp */; };
+		3C95B26321FA632E003373C3 /* oneWay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C95B26121FA632E003373C3 /* oneWay.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		3C95B24121F7BC84003373C3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3C95B24821F91D28003373C3 /* mySolution.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mySolution.cpp; sourceTree = "<group>"; };
 		3C95B24921F91D28003373C3 /* mySolution.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = mySolution.h; sourceTree = "<group>"; };
+		3C95B26121FA632E003373C3 /* oneWay.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = oneWay.cpp; sourceTree = "<group>"; };
+		3C95B26221FA632E003373C3 /* oneWay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oneWay.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 			children = (
 				3C95B24121F7BC84003373C3 /* main.cpp */,
 				3C95B24821F91D28003373C3 /* mySolution.cpp */,
+				3C95B26121FA632E003373C3 /* oneWay.cpp */,
+				3C95B26221FA632E003373C3 /* oneWay.h */,
 				3C95B24921F91D28003373C3 /* mySolution.h */,
 			);
 			path = oneWay;
@@ -125,6 +130,7 @@
 			files = (
 				3C95B24A21F91D28003373C3 /* mySolution.cpp in Sources */,
 				3C95B24221F7BC84003373C3 /* main.cpp in Sources */,
+				3C95B26321FA632E003373C3 /* oneWay.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,13 +13,19 @@
 
 
 #include <iostream>
-#include "mySolution.h"
+//#include "mySolution.h"
+#include <string> // need string to get the length
+#include "oneWay.h"
+
+
+
+
 
 
 
 int main() {
     
-    testIsOneWay();
+    testOneEditAway();
     
     return 0;
 }
