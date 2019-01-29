@@ -1,5 +1,5 @@
-# cracking_the_code_interview
-Solutions to cracking the code interview.
+# Cracking the Code Interview
+Solutions to cracking the code interview. Courtesy to the author of the book.
 
 ### Table of contents
 1. [Big O notation](./big_o_notation)
