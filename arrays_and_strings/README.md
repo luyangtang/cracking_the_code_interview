@@ -16,5 +16,6 @@
 9. [stringCompression](./stringCompression)
 10. [rotateMatrix](./rotateMatrix)
 11. [zeroMatrix](./zeroMatrix)
+12. [stringRotation](./stringRotation)
 
 Implementation of my own version of `arrayList`, `hashTable` and `stringBuilder`, followed by interview question exercises.
