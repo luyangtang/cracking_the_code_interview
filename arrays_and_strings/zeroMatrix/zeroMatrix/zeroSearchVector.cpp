@@ -33,7 +33,7 @@ Matrix::Matrix(int _rowNum, int _colNum, int *_arr)
     zeroRows = new int[rowNum]{0};
     zeroCols = new int[colNum]{0};
 }
-    
+
 Matrix::~Matrix()
 {
     // ? do i need to delete each row here?
@@ -41,7 +41,7 @@ Matrix::~Matrix()
     delete zeroRows;
     delete zeroCols;
 }
-    
+
 void Matrix::searchZero() // trick for multiple outputs
 {
     for (int i = 0; i < rowNum; i++)
@@ -58,8 +58,8 @@ void Matrix::searchZero() // trick for multiple outputs
     }
     searched = true; // mark that search has been done
 }
-    
-    
+
+
 void Matrix::printSearchResult()
 {
     if(!searched)
@@ -78,7 +78,7 @@ void Matrix::printSearchResult()
     }
     std::cout << '\n';
 }
-    
+
 void Matrix::nullify()
 {
     if(!searched)
@@ -96,8 +96,8 @@ void Matrix::nullify()
         }
     }
 }
-    
-    
+
+
 void Matrix::print()
 {
     for (int i = 0; i < rowNum; i++)

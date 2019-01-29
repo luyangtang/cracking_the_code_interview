@@ -8,15 +8,12 @@
 
 #include <iostream>
 #include "zeroSearchVector.h"
+#include "zeroSearchBit.h"
 
 
 int main() {
-//    int arr[] = {1,0,3,4,5,6};
-//    Matrix mtx(2,3,arr);
-//    mtx.print();
-//    mtx.nullify();
-//    mtx.printSearchResult();
     testNullify();
+    testNullifyBit();
     
     return 0;
 }
