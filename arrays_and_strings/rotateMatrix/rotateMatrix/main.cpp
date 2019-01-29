@@ -7,8 +7,11 @@
 //
 
 #include <iostream>
+#include "rotateMatrix.hpp"
+
 
 int main() {
+    test();
     
     return 0;
 }
