@@ -12,7 +12,8 @@
 
 int main() {
     
-    testLinkedList();
+    testRemove();
+    
     return 0;
 }
 

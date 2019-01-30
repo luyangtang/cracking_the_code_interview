@@ -28,6 +28,8 @@ class linkedList
 public:
     Node *head;
     
+    int listLen; // length of the list
+    
     //constructor
     linkedList(int *_arr, int arrLen);
     
@@ -37,7 +39,13 @@ public:
     // printout the list
     void print();
     
+    // delete the i-th index
+    void remove(int i);
+    
 };
+
+void testRemove();
+
 
 void testLinkedList();
 
