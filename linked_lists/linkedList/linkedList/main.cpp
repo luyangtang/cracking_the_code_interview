@@ -7,8 +7,13 @@
 //
 
 #include <iostream>
+#include "myLinkedList.h"
+
 
 int main() {
     
+    testLinkedList();
     return 0;
 }
+
+
