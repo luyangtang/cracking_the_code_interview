@@ -6,3 +6,4 @@
 1. [linkedList](./linkedList)
 
 ##### Solution to interview questions
+2. [removeDups](./removeDups)
