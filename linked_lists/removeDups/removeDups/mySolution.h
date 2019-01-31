@@ -45,11 +45,15 @@ public:
     
     // remove dups
     void removeDups();
+    
+    // remove dups without buffer
+    void removeDups2();
 };
 
 
 void testLinkedList();
 void testDel();
 void testRemoveDups();
+void testRemoveDup2();
 
 #endif /* mySolution_h */

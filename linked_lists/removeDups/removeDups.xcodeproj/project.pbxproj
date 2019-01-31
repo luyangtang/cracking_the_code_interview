@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C95B2F52203981C003373C3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C95B2F42203981C003373C3 /* main.cpp */; };
 		3C95B2FC2203A06D003373C3 /* mySolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C95B2FB2203A06D003373C3 /* mySolution.cpp */; };
+		3C95B3012203B184003373C3 /* runnerApproach.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C95B3002203B184003373C3 /* runnerApproach.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,7 @@
 		3C95B2F42203981C003373C3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3C95B2FB2203A06D003373C3 /* mySolution.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mySolution.cpp; sourceTree = "<group>"; };
 		3C95B2FD2203A07C003373C3 /* mySolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mySolution.h; sourceTree = "<group>"; };
+		3C95B3002203B184003373C3 /* runnerApproach.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = runnerApproach.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				3C95B2FD2203A07C003373C3 /* mySolution.h */,
 				3C95B2F42203981C003373C3 /* main.cpp */,
 				3C95B2FB2203A06D003373C3 /* mySolution.cpp */,
+				3C95B3002203B184003373C3 /* runnerApproach.cpp */,
 			);
 			path = removeDups;
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			files = (
 				3C95B2FC2203A06D003373C3 /* mySolution.cpp in Sources */,
 				3C95B2F52203981C003373C3 /* main.cpp in Sources */,
+				3C95B3012203B184003373C3 /* runnerApproach.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

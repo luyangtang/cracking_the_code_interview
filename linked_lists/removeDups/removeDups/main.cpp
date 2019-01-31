@@ -9,10 +9,9 @@
 #include <iostream>
 #include "mySolution.h"
 
-
 int main() {
     
-    testRemoveDups();
+    testRemoveDup2();
     
     
     return 0;
