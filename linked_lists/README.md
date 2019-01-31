@@ -7,3 +7,4 @@
 
 ##### Solution to interview questions
 2. [removeDups](./removeDups)
+3. [returnKthToLast](./returnKthToLast)
