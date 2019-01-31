@@ -47,7 +47,7 @@ linkedList::~linkedList()
 {
     Node *currentNode = head;
     Node *tmp;
-    while(currentNode->next!=nullptr)
+    while(currentNode!=nullptr && currentNode->next!=nullptr)
     {
         tmp = currentNode->next;
         delete currentNode;
@@ -113,17 +113,17 @@ void testRemove()
 void linkedList:: print()
 {
     Node *currentNode = head;
-    if (listLen > 1)
+    if (listLen >= 1)
     {
-        do
+        while (currentNode!=nullptr && currentNode->next!=nullptr)
         {
             std::cout << currentNode->data << "->";
             currentNode = currentNode->next;
         }
-        while (currentNode->next!=nullptr);
     }
     // off-by-one
-    std::cout << currentNode->data << '\n';
+    if (currentNode!=nullptr)
+        std::cout << currentNode->data << '\n';
 }
 
 
