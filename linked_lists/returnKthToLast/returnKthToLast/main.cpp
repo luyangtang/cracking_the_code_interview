@@ -17,5 +17,5 @@ int main()
 {
     testReturnKth();
     return 0;
-    
+
 }
