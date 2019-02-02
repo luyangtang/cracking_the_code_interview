@@ -2,14 +2,20 @@
 //  main.cpp
 //  returnKthToLast
 //
-//  Created by LYT on 31/01/2019.
+//  Created by LYT on 02/02/2019.
 //  Copyright © 2019 Kiki Tan. All rights reserved.
 //
 
+#include <stdio.h>
 #include <iostream>
+#include "mySolution.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+
+
+
+int main()
+{
+    testReturnKth();
     return 0;
+    
 }
