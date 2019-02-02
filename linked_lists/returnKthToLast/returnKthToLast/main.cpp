@@ -6,6 +6,9 @@
 //  Copyright © 2019 Kiki Tan. All rights reserved.
 //
 
+
+// add remove as a method so that len can be decreased while keeping it a private member
+
 #include <iostream>
 class Node
 {
@@ -66,31 +69,38 @@ public:
         }
         std::cout << current->data << '\n';
     }
-    
-    
-    // return the kth to the last
-    int backCount(int k)
-    {
-        // if only one line just return the value of head
-        if (len == 1)
-        {
-            return head->data;
-        }
-        else
-        {
-            // the kth to the last is the (k-1)th to the last without tail
-            
-            // remove the last one
-            Node *current = head;
-            while (current->next != nullptr)
-            {
-                current = current->next;
-            }
-            // delete
-            delete current;
-        }
-    }
 };
+
+
+// return the kth to the last
+int backCount(linkedList &lst,int k)
+{
+    // if only one line just return the value of head
+    if (lst.head->next == nullptr)
+    {
+        return lst.head->data;
+    }
+    else
+    {
+        // the kth to the last is the (k-1)th to the last without tail
+        
+        // remove the last one
+        Node *current = lst.head;
+        Node *prev = current;
+        while (current->next != nullptr)
+        {
+            prev = current;
+            current = current->next;
+        }
+        
+        // delete
+        delete current;
+        prev->next = nullptr;
+        
+        return backCount(lst,k-1);
+    }
+}
+
 
 int main()
 {
@@ -98,5 +108,6 @@ int main()
     // insert code here...
     int arr[] = {0,1,2,3,4,5};
     linkedList lst(arr,6);
+    std::cout << backCount(lst,2);
     
 }
