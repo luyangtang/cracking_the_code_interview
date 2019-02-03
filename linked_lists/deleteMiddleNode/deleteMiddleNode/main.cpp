@@ -45,9 +45,10 @@ linkedList::linkedList(int arr[], int arrLen)
     Node *current = head;
     len = 1;
     
-    for (int i = 1; i < arrLen - 1; i++)
+    for (int i = 1; i < arrLen; i++)
     {
         current->next = new Node(arr[i]);
+        current = current->next;
         len++;
     }
     this -> print();
@@ -70,12 +71,12 @@ linkedList::~linkedList()
 void linkedList::print()
 {
     Node *current = head;
-    for (int i = 0; i < len; i++)
+    for (int i = 0; i < len - 1; i++)
     {
         std::cout << current->data << "->";
         current = current->next;
     }
-    std::cout << '\n';
+    std::cout  << current->data << '\n';
 }
 
 
