@@ -7,3 +7,5 @@ EXAMPLE
 lnput:the node c from the linked list a->b->c->d->e->f
 
 Result: nothing is returned, but the new linked list looks like a->b->d->e->f
+
+[deleteMiddleNode](./deleteMiddleNode/mySolution.cpp) move the data sequentially and detach the final one.
