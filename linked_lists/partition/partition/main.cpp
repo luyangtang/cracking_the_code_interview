@@ -14,7 +14,10 @@ Node* partition2 (Node *head, int parVal)
     // if only one list then just return
     if (head->next == nullptr)
         return head;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7b6e62f2855f831dae1c4b006fb805fea4dc94e9
     else
     {
         // given a list use recursive calls to partition from the second element
