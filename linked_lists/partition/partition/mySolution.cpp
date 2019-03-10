@@ -34,7 +34,7 @@ linkedList::linkedList(int arr[], int arrLen)
         len++;
     }
     
-    this->print();
+//    this->print();
 }
 
 
