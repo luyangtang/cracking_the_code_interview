@@ -11,13 +11,15 @@
 #include <string>
 #include <sstream>
 #include "mySolution.h"
+#include "manualSum.h"
+
+
 
 
 
 int main(int argc, const char * argv[]) {
     
+    testManualSum();
     
-    testMySolution();
-
     return 0;
 }

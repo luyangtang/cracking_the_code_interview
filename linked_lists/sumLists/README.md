@@ -14,3 +14,5 @@ Input (6 -> 1 -> 7) + (2 -> 9 -> 5). That is, 617 + 295.
 Output: 9 -> 1 -> 2.That is, 912.
 
 [mySolution](./sumLists/mySolution.cpp) converts the list to an integer and cast it back to linked list via string stream. The performance may be greatly affected by long integer inputs.
+
+[manualSum](./sumLists/manualSum.cpp) reproduce the actual steps involved when doing addition by hand, as suggested by the book itself. This does not involve multiple traverses through the lists so has a improved performance as oppose to the first approach.

@@ -9,3 +9,6 @@
 2. [removeDups](./removeDups)
 3. [returnKthToLast](./returnKthToLast)
 4. [partition](./partition)
+5. [deleteMiddleNode](./deleteMiddleNode)
+6. [sumLists](./sumLists)
+7. [circleDetect](./circleDetect)
