@@ -16,7 +16,13 @@ Nodes with identical data may not necessarily need to be the same node. Anything
 
 [arithmeticApproach](./circleDetect/arithmeticApproach.cpp), as per the book suggests, use the usual trick we do for linked list - competing running pointers. The key is to understand if one pointer `n2` starting from  is moving twice as fast as the other `n1`, then if we move `n1` back to Head and keep `n2` at MeetingPoint, and move them both at the same pace, they will meet at LoopStart.
 
-The idea is suppose `n1` and `n2` meet at ![T_0](https://latex.codecogs.com/gif.latex?T_0). Suppose the circle is `K` from `head` and the cycle has perimeter of `C` then at ![T_0](https://latex.codecogs.com/gif.latex?T_0) we have
+The idea is suppose `n1` and `n2` meet at ![T_0](https://latex.codecogs.com/gif.latex?T_0).
+
+Suppose the circle is `K` from `head` and the cycle has perimeter of `C` then at ![T_0](https://latex.codecogs.com/gif.latex?T_0) we have
 ![(T_0-K)\equiv(2*T_0-K)\text{ (mod }C\text{)}](https://latex.codecogs.com/gif.latex?%28T_0-K%29%5Cequiv%282*T_0-K%29%5Ctext%7B%20%28mod%20%7DC%5Ctext%7B%29%7D).
 
-Thus, ![T_0\equiv0\text{ (mod}C\text{)}](https://latex.codecogs.com/gif.latex?T_0%5Cequiv0%5Ctext%7B%20%28mod%7DC%5Ctext%7B%29%7D). Given at ![T_0](https://latex.codecogs.com/gif.latex?T_0), the slower one is at position ![\overline{T_0-K}\text{ (mod }C\text{)}](https://latex.codecogs.com/gif.latex?%5Coverline%7BT_0-K%7D%5Ctext%7B%20%28mod%20%7DC%5Ctext%7B%29%7D). By algebra of cyclic group, we know ![(T_0-K) \equiv( C-K)\text{ (mod }C\text{)} ](https://latex.codecogs.com/gif.latex?%28T_0-K%29%20%5Cequiv%28%20C-K%29%5Ctext%7B%20%28mod%20%7DC%5Ctext%7B%29%7D). i.e. they meet at `K` steps before the start of the cycle.
+Thus, ![T_0\equiv0\text{ (mod}C\text{)}](https://latex.codecogs.com/gif.latex?T_0%5Cequiv0%5Ctext%7B%20%28mod%7DC%5Ctext%7B%29%7D).
+
+Given at ![T_0](https://latex.codecogs.com/gif.latex?T_0), the slower one is at position ![\overline{T_0-K}\text{ (mod }C\text{)}](https://latex.codecogs.com/gif.latex?%5Coverline%7BT_0-K%7D%5Ctext%7B%20%28mod%20%7DC%5Ctext%7B%29%7D).
+
+By algebra of cyclic group, we know ![(T_0-K) \equiv( C-K)\text{ (mod }C\text{)} ](https://latex.codecogs.com/gif.latex?%28T_0-K%29%20%5Cequiv%28%20C-K%29%5Ctext%7B%20%28mod%20%7DC%5Ctext%7B%29%7D). i.e. they meet at `K` steps before the start of the cycle.
