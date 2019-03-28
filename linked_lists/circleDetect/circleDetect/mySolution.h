@@ -46,6 +46,8 @@ public:
     
     bool testLoop();
     
+    bool testLoopAlg();
+    
     
     void append(Node *newNode);
     
