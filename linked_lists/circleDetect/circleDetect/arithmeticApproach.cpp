@@ -40,3 +40,14 @@ bool LinkedList::testLoopAlg()
     std::cout << "no loop\n";
     return false;
 }
+
+
+void testCircleDetectAlg()
+{
+    int arr[] = {0,1,2,3,4,5};
+    
+    LinkedList myLst(arr,6);
+    myLst.testLoopAlg();
+    myLst.append(myLst.head);
+    myLst.testLoopAlg();
+}

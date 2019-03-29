@@ -1,4 +1,4 @@
-# Circle circleDetect
+# Cycle Detect
 
 Given a circular linked list, implement an algorithm which returns node at the beginning of the loop.
 

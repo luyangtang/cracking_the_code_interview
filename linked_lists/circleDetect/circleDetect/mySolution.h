@@ -61,5 +61,7 @@ void testCircleDetect();
 
 void testLinkedList();
 
+void testCircleDetectAlg();
+
 
 #endif /* mySolution_h */
