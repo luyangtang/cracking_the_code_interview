@@ -12,3 +12,4 @@
 5. [deleteMiddleNode](./deleteMiddleNode)
 6. [sumLists](./sumLists)
 7. [circleDetect](./circleDetect)
+8. [palindrome](./palindrome)
