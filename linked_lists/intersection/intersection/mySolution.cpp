@@ -18,10 +18,10 @@ Node::Node(int _data, Node *_next)
 }
 
 // constructor - from another node
-Node::Node(Node *_node)
+Node::Node(Node &_node)
 {
-    data = _node->data;
-    next = _node->next;
+    data = _node.data;
+    next = _node.next;
 }
 
 
@@ -91,7 +91,7 @@ void testLinkedListFromArr()
     lst.print();
 }
 
-bool isIntersect(LinkedList &lst1, LinkedList &lst2)
+bool isIntersect(const LinkedList &lst1, const LinkedList &lst2)
 {
     // use brute force
     Node *c1 = lst1.head;

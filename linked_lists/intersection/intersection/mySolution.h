@@ -20,7 +20,7 @@ public:
     Node(int _data, Node *_next = nullptr);
     
     // constructor - from another node
-    Node(Node *_node);
+    Node(Node &_node);
 };
 
 
@@ -36,6 +36,10 @@ public:
     // constructor - from another linkedList
     LinkedList(LinkedList *lst);
     
+    const int getLen ()const;
+    
+    const Node *getTail() const;
+    
     //    // destructor
     //    ~LinkedList();
     //
@@ -44,12 +48,13 @@ public:
     void printAddress();
     
     
+    
 };
 
 
 void testLinkedListFromArr();
 
-bool isIntersect(LinkedList &lst1, LinkedList &lst2);
+bool isIntersect(const LinkedList &lst1, const LinkedList &lst2);
 
 void testIsIntersection();
 

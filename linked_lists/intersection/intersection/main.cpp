@@ -8,11 +8,13 @@
 
 #include <iostream>
 #include "mySolution.h"
+#include "compareTail.h"
+
 
 
 int main() {
     
-    testIsIntersection();
+    testIsIntersection2();
     return 0;
     
 }
