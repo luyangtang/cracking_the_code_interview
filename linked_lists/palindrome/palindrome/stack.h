@@ -42,5 +42,6 @@ public:
 
 void testStack();
 
+void testFinal();
 
 #endif /* stack_h */
