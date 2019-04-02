@@ -99,15 +99,18 @@ bool LinkedList::isPalindrome2()
     Node *slow = this->head;
     Node *fast = this->head;
     
-    while (fast->next->next != nullptr)
+    while (fast != nullptr && fast->next != nullptr)
     {
         stk.push(slow->data);
         
         fast = fast->next->next;
         slow = slow->next;
     }
-    slow = slow->next;
-    stk.push(slow->data);
+//    slow = slow->next;
+//    stk.push(slow->data);
+    
+    if (fast != nullptr) // if the length is odd
+        slow = slow->next;
     
     while (slow->next != nullptr)
     {
@@ -131,6 +134,10 @@ void testFinal()
     lst.isPalindrome2();
     
     int arr2[] = {0,1,2,3,4,2,1,0};
-    LinkedList lst2(arr2,6);
+    LinkedList lst2(arr2,8);
     lst2.isPalindrome2();
+    
+    int arr3[] = {0,1,2,3,2,1,0};
+    LinkedList lst3(arr3,7);
+    lst3.isPalindrome2();
 }
