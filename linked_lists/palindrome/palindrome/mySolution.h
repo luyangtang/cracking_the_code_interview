@@ -36,6 +36,8 @@ public:
     LinkedList *reverse();
     bool isPalindrome();
     
+    bool isPalindrome2();
+    
 };
 
 
