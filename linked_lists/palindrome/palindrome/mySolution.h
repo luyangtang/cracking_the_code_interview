@@ -34,9 +34,15 @@ public:
     ~LinkedList();
     void print();
     LinkedList *reverse();
+    
+    // my solution
     bool isPalindrome();
     
+    // using stack
     bool isPalindrome2();
+    
+    // using recursion
+    bool isPalindrome3();
     
 };
 
