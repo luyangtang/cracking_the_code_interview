@@ -63,4 +63,10 @@ public:
     bool isEmpty();
 };
 
+
+void testLinkedList();
+
+void testStack2();
+
+
 #endif /* stackFromList_h */
