@@ -7,9 +7,13 @@
 //
 
 #include <iostream>
+#include "fixedLength.h"
+
+
+
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    
+    testTripleStacks();
     return 0;
 }
