@@ -1,12 +1,13 @@
 #include <iostream>
-#include "sortStack.h"
+#include "mergeSort.h"
+
+
 
 
 
 int main() {
   
-  testSortStackAsMember();
-
+  testMergeSortInClass();
   return 0;
   
 }

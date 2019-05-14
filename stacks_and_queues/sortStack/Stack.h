@@ -31,6 +31,7 @@ public:
   int pop();
   int peek();
   void sort();
+  void mergeSort();
 
   // get
   int getTop();
