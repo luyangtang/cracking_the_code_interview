@@ -1,4 +1,4 @@
-# Stakes and Queues
+# Stacks and Queues
 
 [stackFromArr](./stack/stackFromArr.cpp) implements a stack from an array (with pre-defined max length).
 
