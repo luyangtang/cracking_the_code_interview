@@ -22,6 +22,7 @@ public:
 
   // get function
   Node *getNext();
+  Node *createNext(const Node &_next);
 
   // print
   void print(std::ostream &out) const;
@@ -58,6 +59,12 @@ public:
   friend std::ostream& operator<< (std::ostream &out, const Dog &d);
 };
 
+
+Node *Node::createNext(const Node &_next)
+{
+  next = new Node(_next);
+  return next;
+}
 
 Cat::Cat(Cat *_c)
 : Node(_c)
