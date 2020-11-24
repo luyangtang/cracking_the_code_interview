@@ -13,4 +13,6 @@ Solutions to cracking the code interview. Courtesy to the author of the book.
 
 4. [Stacks and Queues](./stacks_and_queues)
   - Implementation of stakes and queues.
-49252182
+
+5. [Trees and Graphs](./trees_and_graphs)
+  - Implementation of trees and graphs.
