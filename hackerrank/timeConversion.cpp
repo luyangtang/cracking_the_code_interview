@@ -10,14 +10,22 @@ using namespace std;
  */
 
 string timeConversion(string s) {
+
+    int hour = std::stoi(s.substr(0, 2));
     
-    if (s.substr( s.length() - 2 ) == "PM" ){
-        int hour = (s.substr(0, 2) != "12")? (stoi(s.substr(0, 2)) + 12) : 0;
-        s.replace(0, 2, (hour == 0) ? "00" : std::to_string(hour));
+    if (s.substr(s.length() - 2) == "PM") {
+        hour = (hour == 12) ? hour : (hour + 12);
     }
+    else if (hour == 12){
+        hour = 0;
+    }
+    
+    // padding
+    string hourStr = (hour >= 10) ? std::to_string(hour) : ("0" + std::to_string(hour));
+    
+    string outputString = s.replace(0, 2, hourStr).substr(0, s.length() - 2);
 
-    return s.substr(0, s.length() - 2);
-
+    return outputString;
 }
 
 int main()
