@@ -21,4 +21,11 @@ namespace diagonalDifference{
     int diagonalDifference(std::vector<std::vector<int>> );
 };
 
+
+namespace countingSort1{
+    void test();
+    std::vector<int> countingSort1(std::vector<int> ) ;
+};
+
+
 #endif /* hackerrank_h */

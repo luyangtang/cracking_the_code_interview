@@ -13,7 +13,8 @@ int main(int argc, const char * argv[]) {
     // insert code here...
     
 //    lonelyInteger::test();
-    diagonalDifference::test();
+//    diagonalDifference::test();
+    countingSort1::test();
     
     return 0;
 }
