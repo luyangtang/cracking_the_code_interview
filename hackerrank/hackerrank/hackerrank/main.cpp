@@ -14,7 +14,9 @@ int main(int argc, const char * argv[]) {
     
 //    lonelyInteger::test();
 //    diagonalDifference::test();
-    countingSort1::test();
+//    countingSort1::test();
+//    zigzagSequence::test();
+    towerBreakers::test();
     
     return 0;
 }

@@ -27,5 +27,14 @@ namespace countingSort1{
     std::vector<int> countingSort1(std::vector<int> ) ;
 };
 
+namespace zigzagSequence{
+    void test();
+    void findZigZagSequence(std::vector < int >, int);
+}
+
+namespace towerBreakers{
+    void test();
+    int towerBreakers(int, int);
+}
 
 #endif /* hackerrank_h */
