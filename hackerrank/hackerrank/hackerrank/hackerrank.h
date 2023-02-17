@@ -9,6 +9,7 @@
 #define hackerrank_h
 
 #include <vector>
+#include <string>
 
 namespace lonelyInteger{
     void test();
@@ -35,6 +36,11 @@ namespace zigzagSequence{
 namespace towerBreakers{
     void test();
     int towerBreakers(int, int);
+}
+
+namespace caesarCipher{
+    void test();
+    std::string caesarCipher(std::string, int);
 }
 
 #endif /* hackerrank_h */
