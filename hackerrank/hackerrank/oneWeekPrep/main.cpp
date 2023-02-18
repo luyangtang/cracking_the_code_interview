@@ -17,7 +17,8 @@ int main(int argc, const char * argv[]) {
 //    countingSort1::test();
 //    zigzagSequence::test();
 //    towerBreakers::test();
-    caesarCipher::test();
+//    caesarCipher::test();
+    gridChallenge::test();
     
     return 0;
 }

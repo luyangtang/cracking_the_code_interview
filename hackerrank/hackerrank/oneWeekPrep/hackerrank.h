@@ -43,4 +43,8 @@ namespace caesarCipher{
     std::string caesarCipher(std::string, int);
 }
 
+namespace gridChallenge{
+    void test();
+    std::string gridChallenge(std::vector<std::string>);
+}
 #endif /* hackerrank_h */
