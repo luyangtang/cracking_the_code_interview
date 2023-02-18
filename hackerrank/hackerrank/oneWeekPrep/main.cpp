@@ -18,7 +18,8 @@ int main(int argc, const char * argv[]) {
 //    zigzagSequence::test();
 //    towerBreakers::test();
 //    caesarCipher::test();
-    gridChallenge::test();
+//    gridChallenge::test();
+    recursiveDigitalSum::test();
     
     return 0;
 }

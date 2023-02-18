@@ -11,6 +11,11 @@
 #include <vector>
 #include <string>
 
+namespace recursiveDigitalSum{
+    void test();
+    int superDigit(std::string, int);
+}
+
 namespace lonelyInteger{
     void test();
     int lonelyInteger(std::vector<int> );
