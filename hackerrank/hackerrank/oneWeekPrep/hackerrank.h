@@ -11,6 +11,11 @@
 #include <vector>
 #include <string>
 
+namespace mergeTwoSortedLinkedList{
+    void test();
+}
+
+
 namespace queueUsingTwoStacks{
     void test();
 }
