@@ -11,6 +11,16 @@
 #include <vector>
 #include <string>
 
+namespace queueUsingTwoStacks{
+    void test();
+}
+
+namespace newYearChaos{
+    void test();
+    void minimumBribes(std::vector<int>);
+}
+
+
 namespace recursiveDigitalSum{
     void test();
     int superDigit(std::string, int);

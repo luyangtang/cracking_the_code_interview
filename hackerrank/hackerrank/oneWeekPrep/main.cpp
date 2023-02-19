@@ -19,7 +19,9 @@ int main(int argc, const char * argv[]) {
 //    towerBreakers::test();
 //    caesarCipher::test();
 //    gridChallenge::test();
-    recursiveDigitalSum::test();
+//    recursiveDigitalSum::test();
+//    newYearChaos::test();
+    queueUsingTwoStacks::test();
     
     return 0;
 }
