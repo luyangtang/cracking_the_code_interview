@@ -1,17 +1,10 @@
-//
-//  queueUsingTwoStacks.cpp
-//  hackerrank
-//
-//  Created by Luyang Tang on 19/02/2023.
-//
-
-#include <stdio.h>
-#include <iostream>
+#include <cmath>
+#include <cstdio>
 #include <vector>
-#include "hackerrank.h"
-
-using namespace::std;
-
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
 
 class Stack{
 private:
@@ -85,9 +78,7 @@ public:
     }
     
     int enqueue(int i){
-        
         if (stack1->getTop() == 0 && stack2->getTop() == 0) top = i;
-        
         Stack *tmp = stack1->getTop() < 1 ? stack2 : stack1;
         tmp->push(i);
         
@@ -131,6 +122,45 @@ public:
 };
 
 
+string ltrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        s.end()
+    );
+
+    return s;
+}
+
+vector<string> split(const string &str) {
+    vector<string> tokens;
+
+    string::size_type start = 0;
+    string::size_type end = 0;
+
+    while ((end = str.find(" ", start)) != string::npos) {
+        tokens.push_back(str.substr(start, end - start));
+
+        start = end + 1;
+    }
+
+    tokens.push_back(str.substr(start));
+
+    return tokens;
+}
+
 ostream& operator<<(ostream &out, const Queue &s){
     out << "(";
     for (vector<int>::iterator it = s.getArr()->begin(); it != s.getArr()->end(); it++){
@@ -151,61 +181,40 @@ ostream& operator<<(ostream &out, const Stack &s){
     return out;
 }
 
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    
 
-void queueUsingTwoStacks::test(){
+    string n_query;
+    getline(cin, n_query);
 
-//    Stack *stack = new Stack({1,2,3});
-//    cout << *stack;
-//
-//    for (int i = 0; i < 3; i++){
-//        stack->pop();
-//    }
-//    cout << *stack;
-//    cout <<endl;
+    int n = stoi(ltrim(rtrim(n_query)));
+        // create a queue
+        Queue *queue = new Queue();
+
+    for (int i = 0; i < n; i++){
+        string arr_temp_temp;
+        getline(cin, arr_temp_temp);
+
+        vector<string> arr_temp = split(rtrim(arr_temp_temp));
+        
+        int type = stoi(ltrim(rtrim(arr_temp[0])));
+        
+        
+        if (type == 1){
+            int value = stoi(ltrim(rtrim(arr_temp[1])));
+            queue->enqueue(value);
+            
+        } else if (type == 2){
+            
+            queue->dequeue();
+            
+        } else {
+            cout << queue->getTop() << endl;
+        }
+        // cout << " Type " << type <<" Queue: " << *queue << " Top: " << queue->getTop() << endl;
+        // cout << type << " " <<endl;
+    }
     
-//    Queue *queue = new Queue({1,2,3});
-    
-    
-    /*
-     STDIN   Function
-     -----   --------
-     10      q = 10 (number of queries)
-     1 42    1st query, enqueue 42
-     2       dequeue front element
-     1 14    enqueue 42
-     3       print the front element
-     1 28    enqueue 28
-     3       print the front element
-     1 60    enqueue 60
-     1 78    enqueue 78
-     2       dequeue front element
-     2       dequeue front element
-     */
-    
-    Queue *queue = new Queue();
-    cout << *queue << " Top: " << queue->getTop() << endl;
-    
-    queue->enqueue(42);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->dequeue();
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->enqueue(14);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->enqueue(28);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->enqueue(60);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->enqueue(78);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->dequeue();
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->dequeue();
-    cout << *queue << " Top: " << queue->getTop()<< endl;
+    return 0;
 }
