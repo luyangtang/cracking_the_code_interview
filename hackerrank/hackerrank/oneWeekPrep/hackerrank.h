@@ -11,6 +11,8 @@
 #include <vector>
 #include <string>
 
+using namespace::std;
+
 namespace mergeTwoSortedLinkedList{
     void test();
 }
@@ -18,6 +20,8 @@ namespace mergeTwoSortedLinkedList{
 
 namespace queueUsingTwoStacks{
     void test();
+
+
 }
 
 namespace newYearChaos{
