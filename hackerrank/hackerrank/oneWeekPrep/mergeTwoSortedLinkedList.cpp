@@ -86,35 +86,48 @@ SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* head1, SinglyLinkedListNo
     SinglyLinkedListNode *runner1 = head1;
     SinglyLinkedListNode *runner2 = head2;
     
-    while (runner1->next != nullptr || runner2->next != nullptr){
+    bool test = true;
+    
+    while (runner1 != nullptr || runner2 != nullptr){
         
-        if (runner1->next == nullptr){
-            mergedRunner->next = runner2; runner2++;
+        if (runner1 == nullptr){
+            if (test) {cout << "Case 1 " << "Runner 2 = " << runner2->data  << "(" << runner2 << ") "<< endl;}
+            mergedRunner->next = new SinglyLinkedListNode(runner2->data);
+            runner2 = runner2->next;
         }
-        else if (runner2->next == nullptr){
-            mergedRunner->next = runner1; runner1++;
+        else if (runner2 == nullptr){
+            if (test) {cout << "Case 2 "  << "Runner 1 = " << runner1->data << "(" << runner1 <<  ") "<< endl;}
+            mergedRunner->next = new SinglyLinkedListNode(runner1->data);
+            runner1 = runner1->next;
         }
         else {
+            if (test) {cout << "Case 3 "  << "Runner 1 = " << runner1->data << "(" << runner1 << "),  Runner 2 = " << runner2->data  << "(" << runner2 << "); " <<endl;}
+            if (runner1->data < runner2->data){
+                mergedRunner->next = new SinglyLinkedListNode(runner1->data); runner1 = runner1->next;
+            }
             
-            if (runner1->data < runner2->data) {
-                mergedRunner->next = new SinglyLinkedListNode(runner1->data); runner1++;
-            } else{
-                mergedRunner->next = new SinglyLinkedListNode(runner2->data); runner2++;
+            else {
+                mergedRunner->next = new SinglyLinkedListNode(runner2->data); runner2 = runner2->next;
             }
         }
-        
-        cout << "Runner 1 = " << runner1->data << "(" << runner1 << "),  Runner 2 = " << runner2->data  << "(" << runner2 << ") "<< endl;
         mergedRunner = mergedRunner->next;
     }
-    return mergedHead + 1;
+    
+    return mergedHead->next;
 }
 
 
 
 void mergeTwoSortedLinkedList::test(){
     
-    vector<int> v1 = {1,3,7};
+//    vector<int> v1 = {1,3,7};
+//    vector<int> v2 = {1,2};
+    
+    vector<int> v1 = {1,2,3};
     vector<int> v2 = {3,4};
+//
+//    vector<int> v1 = {4,5,6};
+//    vector<int> v2 = {1,2,10};
     
     SinglyLinkedList* llist1 = new SinglyLinkedList();
     SinglyLinkedList* llist2 = new SinglyLinkedList();
