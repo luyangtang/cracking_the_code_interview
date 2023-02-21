@@ -63,7 +63,9 @@ private:
     Stack *stack2;
     int top;
     
+    
 public:
+    int flag;
     ~Queue(){
         delete stack1;
         delete stack2;
@@ -78,9 +80,10 @@ public:
         stack1 = new Stack(arr);
         stack2 = new Stack();
         top = stack1->getArr()->front();
+        flag = 0;
     }
     
-    int getTop(){
+    int getTop() const{
         return top;
     }
     
@@ -88,7 +91,7 @@ public:
         
         if (stack1->getTop() == 0 && stack2->getTop() == 0) top = i;
         
-        Stack *tmp = stack1->getTop() < 1 ? stack2 : stack1;
+        Stack *tmp = flag ? stack2 : stack1;
         tmp->push(i);
         
         return i;
@@ -96,45 +99,54 @@ public:
     
     int dequeue(){
         
-        Stack *tmpNonEmpty = stack1->getTop() < 1 ? stack2 : stack1;
-        Stack *tmpEmpty =stack1->getTop() < 1 ? stack1 : stack2;
+        Stack *tmpNonEmpty;
+        Stack *tmpEmpty;
+
         
-//        cout << "Before transferring ";
-//        for (vector<int>::iterator it = tmpNonEmpty->getArr()->begin(); it!= tmpNonEmpty->getArr()->end(); it++){
-//            cout << *it << " ";
-//        }
-//        cout << " (total " << tmpNonEmpty->getTop() << ")" << endl;
+        tmpNonEmpty = flag ? stack2 : stack1;
+        tmpEmpty = flag ? stack1 : stack2;
         
-        // move everything from non-empty stack to empty stack
+        flag =  1 - flag;
+        
         int n = tmpNonEmpty->getTop();
         for (int i = 0; i < n; i++){
+            
+            // when i = 0, update the top
+            if (flag == 0 && i == 0){
+                top = tmpNonEmpty->getTop() >0 ? tmpNonEmpty->getArr()->back() : 0;
+            }
+            
             tmpEmpty->push(tmpNonEmpty->pop());
         }
 
         // pop from the 'empty'
         int popped = tmpEmpty->pop(); n--;
-        
-        for (int i = 0; i < n; i++){
-            int tmp = tmpEmpty->pop();
-            if (i == 0) top = tmp; // take a note of the first one
-            tmpNonEmpty->push(tmp);
+        if (flag == 1){
+            top = tmpEmpty->getTop() >0 ? tmpEmpty->getArr()->back() : 0;
         }
-        
         return popped;
     }
     
     
     vector<int>* getArr() const{
-        Stack *tmpNonEmpty = stack1->getTop() < 1 ? stack2 : stack1;
-        return tmpNonEmpty->getArr();
+        return flag ? stack2->getArr():stack1->getArr();
     }
 };
 
 
 ostream& operator<<(ostream &out, const Queue &s){
+    
+    out << "flag " << s.flag << " ";
     out << "(";
-    for (vector<int>::iterator it = s.getArr()->begin(); it != s.getArr()->end(); it++){
-        out << *it << " ";
+    
+    if (!s.flag){
+        for (vector<int>::iterator it = s.getArr()->end()-1; it != s.getArr()->begin()-1; it--){
+            out << *it << " ";
+        }
+    }else{
+        for (vector<int>::iterator it = s.getArr()->begin(); it != s.getArr()->end(); it++){
+            out << *it << " ";
+        }
     }
     out << ")";
     
@@ -201,6 +213,27 @@ void queueUsingTwoStacks::test(){
     cout << *queue << " Top: " << queue->getTop()<< endl;
     
     queue->enqueue(78);
+    cout << *queue << " Top: " << queue->getTop()<< endl;
+    
+    queue->dequeue();
+    cout << *queue << " Top: " << queue->getTop()<< endl;
+    
+    queue->dequeue();
+    cout << *queue << " Top: " << queue->getTop()<< endl;
+    
+    queue->dequeue();
+    cout << *queue << " Top: " << queue->getTop()<< endl;
+    
+    queue->enqueue(14);
+    cout << *queue << " Top: " << queue->getTop()<< endl;
+    
+    queue->enqueue(28);
+    cout << *queue << " Top: " << queue->getTop()<< endl;
+    
+    queue->enqueue(50);
+    cout << *queue << " Top: " << queue->getTop()<< endl;
+    
+    queue->dequeue();
     cout << *queue << " Top: " << queue->getTop()<< endl;
     
     queue->dequeue();

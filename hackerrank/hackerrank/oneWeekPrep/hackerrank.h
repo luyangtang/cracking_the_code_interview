@@ -13,6 +13,10 @@
 
 using namespace::std;
 
+namespace balancedBrackets{
+void test();
+}
+
 namespace mergeTwoSortedLinkedList{
     void test();
 }
