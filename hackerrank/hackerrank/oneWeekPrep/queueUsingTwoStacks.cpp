@@ -44,38 +44,32 @@ public:
     }
     
     int enqueue(int i){
-        int moved;
-        if (flag) {
-            
-            // things in stack2 is in reversed order
-            int n = stack2->size();
-            for (int i = 0; i < n; i++){
-                moved = stack2->top();
-                stack2->pop();
-                stack1->push(moved);
-            } flag = !flag;
-        }
+        
         stack1->push(i);
-        front = size == 0? i: front; size++;
+        front = size == 0?i:front;
+        size++;
+        
         return i;
     }
     
     int dequeue(){
-        stack<int> *tmpNonEmpty = flag?stack2:stack1;
-        stack<int> *tmpEmpty = flag?stack1:stack2;
+        // swap the stacks
+        for (int i = 0; i < size; i++){
+            stack2->push(stack1->top());
+            stack1->pop();
+        }
+        
+        // pop from stack 2
+        int popped = stack2->top();
+        stack2->pop(); size--;
+        front = size == 0? -9999:stack2->top();
         
         // swap the stacks
-        int n = tmpNonEmpty->size();
-        int moved;
-        for (int i = 0; i < n; i++){
-            moved = tmpNonEmpty->top();
-            tmpNonEmpty->pop();
-            tmpEmpty->push(moved);
-        } flag = !flag; size--;
+        for (int i = 0; i < size; i++){
+            stack1->push(stack2->top());
+            stack2->pop();
+        }
         
-        // after swapping, pop from the other stack
-        int popped = tmpEmpty->top();
-        tmpEmpty->pop(); front = tmpEmpty->size() > 0?tmpEmpty->top():-999999;
         return popped;
     }
 };
@@ -128,7 +122,7 @@ ostream& operator<<(ostream &out, const Queue &q){
     
     // create a shadow stack so as to print out the queue
     stack<int> *s = new stack<int>;
-    *s = *(q.flag?q.stack2:q.stack1);
+    *s = *(q.stack1);
     
     vector<int> *arr = new vector<int>;
     
@@ -139,19 +133,11 @@ ostream& operator<<(ostream &out, const Queue &q){
             arr->push_back(s->top());
             s->pop();
         }
-    } 
+    }
     
-    cout << " flag - " << q.flag << " (";
-//    cout << "(";
-    
-    if (!q.flag) {
-        for (vector<int>::iterator i = arr->end()-1; i != arr->begin()-1; i--){
-            cout << *i << " ";
-        }
-    } else{
-        for (vector<int>::iterator i = arr->begin(); i != arr->end(); i++){
-            cout << *i << " ";
-        }
+    cout << "( ";
+    for (vector<int>::iterator i = arr->end()-1; i != arr->begin()-1; i--){
+        cout << *i << " ";
     }
     
     cout << ") ";
