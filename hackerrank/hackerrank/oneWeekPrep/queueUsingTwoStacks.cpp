@@ -8,175 +8,163 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
+#include <stack>
 #include "hackerrank.h"
+#include <fstream>
+#include <cmath>
+#include <cstdio>
+#include <algorithm>
 
 using namespace::std;
 
 
-class Stack{
-private:
-    vector<int> *arr;
-public:
-    ~Stack(){
-        delete arr;
-    }
-    Stack(){
-        arr = new vector<int>();
-    }
-    
-    Stack(vector<int> a){
-        arr = new vector<int>(a);
-    }
-    
-    int push(int i){
-        arr->insert(arr->end(), i);
-        return i;
-    }
-    
-    int pop(){
-        int i = arr->back();
-        arr->pop_back();
-        return i;
-    }
-    
-    int getTop() const {
-        if (arr){
-            return arr->end() - arr->begin();
-        }
-        else
-        {
-            return 0;
-        }
-    }
-    
-    vector<int>* getArr() const {
-        return arr;
-    }
-    
-};
-
-
 class Queue{
     
-private:
-    Stack *stack1;
-    Stack *stack2;
-    int top;
-    
-    
 public:
-    int flag;
-    ~Queue(){
-        delete stack1;
-        delete stack2;
-    }
+    stack<int> *stack1;
+    stack<int> *stack2;
+    int flag; // 0 - stack1, 1 - stack2
+    int front;
+    int size;
     
     Queue(){
-        stack1 = new Stack();
-        stack2 = new Stack();
+        stack1 = new stack<int>; stack2 = new stack<int>; flag = 0; size = 0;
     }
     
     Queue(vector<int> arr){
-        stack1 = new Stack(arr);
-        stack2 = new Stack();
-        top = stack1->getArr()->front();
-        flag = 0;
+        stack1 = new stack<int>; stack2 = new stack<int>; flag = 0; size = arr.size(); front = arr.front();
+        
+        for (vector<int>::iterator it = arr.begin(); it != arr.end(); it++){
+            stack1->push(*it);
+        }
     }
     
-    int getTop() const{
-        return top;
+    ~Queue(){
+        delete stack1; delete stack2;
     }
     
     int enqueue(int i){
-        
-        if (stack1->getTop() == 0 && stack2->getTop() == 0) top = i;
-        
-        Stack *tmp = flag ? stack2 : stack1;
-        tmp->push(i);
-        
+        int moved;
+        if (flag) {
+            
+            // things in stack2 is in reversed order
+            int n = stack2->size();
+            for (int i = 0; i < n; i++){
+                moved = stack2->top();
+                stack2->pop();
+                stack1->push(moved);
+            } flag = !flag;
+        }
+        stack1->push(i);
+        front = size == 0? i: front; size++;
         return i;
     }
     
     int dequeue(){
+        stack<int> *tmpNonEmpty = flag?stack2:stack1;
+        stack<int> *tmpEmpty = flag?stack1:stack2;
         
-        Stack *tmpNonEmpty;
-        Stack *tmpEmpty;
-
-        
-        tmpNonEmpty = flag ? stack2 : stack1;
-        tmpEmpty = flag ? stack1 : stack2;
-        
-        flag =  1 - flag;
-        
-        int n = tmpNonEmpty->getTop();
+        // swap the stacks
+        int n = tmpNonEmpty->size();
+        int moved;
         for (int i = 0; i < n; i++){
-            
-            // when i = 0, update the top
-            if (flag == 0 && i == 0){
-                top = tmpNonEmpty->getTop() >0 ? tmpNonEmpty->getArr()->back() : 0;
-            }
-            
-            tmpEmpty->push(tmpNonEmpty->pop());
-        }
-
-        // pop from the 'empty'
-        int popped = tmpEmpty->pop(); n--;
-        if (flag == 1){
-            top = tmpEmpty->getTop() >0 ? tmpEmpty->getArr()->back() : 0;
-        }
+            moved = tmpNonEmpty->top();
+            tmpNonEmpty->pop();
+            tmpEmpty->push(moved);
+        } flag = !flag; size--;
+        
+        // after swapping, pop from the other stack
+        int popped = tmpEmpty->top();
+        tmpEmpty->pop(); front = tmpEmpty->size() > 0?tmpEmpty->top():-999999;
         return popped;
-    }
-    
-    
-    vector<int>* getArr() const{
-        return flag ? stack2->getArr():stack1->getArr();
     }
 };
 
+string ltrim(const string &str) {
+    string s(str);
 
-ostream& operator<<(ostream &out, const Queue &s){
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), [](auto c) {return
+            !std::isspace(c);})
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), [](auto c) {return
+            !std::isspace(c);}).base(),
+        s.end()
+    );
+
+    return s;
+}
+
+
+
+vector<string> split(const string &str) {
+    vector<string> tokens;
+
+    string::size_type start = 0;
+    string::size_type end = 0;
+
+    while ((end = str.find(" ", start)) != string::npos) {
+        tokens.push_back(str.substr(start, end - start));
+
+        start = end + 1;
+    }
+
+    tokens.push_back(str.substr(start));
+
+    return tokens;
+}
+
+
+ostream& operator<<(ostream &out, const Queue &q){
     
-    out << "flag " << s.flag << " ";
-    out << "(";
+    // create a shadow stack so as to print out the queue
+    stack<int> *s = new stack<int>;
+    *s = *(q.flag?q.stack2:q.stack1);
     
-    if (!s.flag){
-        for (vector<int>::iterator it = s.getArr()->end()-1; it != s.getArr()->begin()-1; it--){
-            out << *it << " ";
+    vector<int> *arr = new vector<int>;
+    
+    int n = s->size();
+    
+    if (n > 0){
+        for (int i = 0; i < n; i++ ){
+            arr->push_back(s->top());
+            s->pop();
         }
-    }else{
-        for (vector<int>::iterator it = s.getArr()->begin(); it != s.getArr()->end(); it++){
-            out << *it << " ";
+    } 
+    
+    cout << " flag - " << q.flag << " (";
+//    cout << "(";
+    
+    if (!q.flag) {
+        for (vector<int>::iterator i = arr->end()-1; i != arr->begin()-1; i--){
+            cout << *i << " ";
+        }
+    } else{
+        for (vector<int>::iterator i = arr->begin(); i != arr->end(); i++){
+            cout << *i << " ";
         }
     }
-    out << ")";
+    
+    cout << ") ";
+    
+    delete arr; delete s;
     
     return out;
 }
 
-ostream& operator<<(ostream &out, const Stack &s){
-    out << "(";
-    for (vector<int>::iterator it = s.getArr()->begin(); it != s.getArr()->end(); it++){
-        out << *it << " ";
-    }
-    out << ")";
-    
-    return out;
-}
 
 
 void queueUsingTwoStacks::test(){
 
-//    Stack *stack = new Stack({1,2,3});
-//    cout << *stack;
-//
-//    for (int i = 0; i < 3; i++){
-//        stack->pop();
-//    }
-//    cout << *stack;
-//    cout <<endl;
-    
-//    Queue *queue = new Queue({1,2,3});
-    
     
     /*
      STDIN   Function
@@ -194,51 +182,50 @@ void queueUsingTwoStacks::test(){
      2       dequeue front element
      */
     
-    Queue *queue = new Queue();
-    cout << *queue << " Top: " << queue->getTop() << endl;
+//    Queue q({1,2,3});
+    std::ifstream input("/Users/luyangtang/Documents/cracking_the_code_interview/hackerrank/queueUsingTwoStacks/testcases/queueUsingTwoStacks.txt");
+  
+    string n_query;
+    getline(input, n_query);
+    cout << n_query << endl;
     
-    queue->enqueue(42);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
+    int n = stoi(n_query);
+            // create a queue
+            Queue *queue = new Queue();
+
+        for (int i = 0; i < n; i++){
+            string arr_temp_temp;
+            getline(input, arr_temp_temp);
+
+            vector<string> arr_temp = split(rtrim(arr_temp_temp));
+            
+            int type = stoi(ltrim(rtrim(arr_temp[0])));
+            
+            
+            if (type == 1){
+                int value = stoi(ltrim(rtrim(arr_temp[1])));
+                queue->enqueue(value);
+                
+            } else if (type == 2){
+                
+                queue->dequeue();
+                
+            } else {
+                cout << queue->front << endl;
+            }
+             cout << "     Type " << arr_temp_temp << *queue << " Top: " << queue->front<< endl;
+//             cout << type << " " <<endl;
+        }
     
-    queue->dequeue();
-    cout << *queue << " Top: " << queue->getTop()<< endl;
     
-    queue->enqueue(14);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
+//    Queue q;
+//    cout << "size = " << q.size << ", front is " << q.front << endl;
     
-    queue->enqueue(28);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
+//    q.enqueue(4);
+//    cout << "size = " << q.size << ", front is " << q.front << endl;
     
-    queue->enqueue(60);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
+//    q.dequeue();
+//    cout << "size = " << q.size << ", front is " << q.front << endl;
     
-    queue->enqueue(78);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->dequeue();
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->dequeue();
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->dequeue();
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->enqueue(14);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->enqueue(28);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->enqueue(50);
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->dequeue();
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->dequeue();
-    cout << *queue << " Top: " << queue->getTop()<< endl;
-    
-    queue->dequeue();
-    cout << *queue << " Top: " << queue->getTop()<< endl;
+
 }

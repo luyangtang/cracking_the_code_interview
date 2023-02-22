@@ -4,120 +4,58 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <stack>
 using namespace std;
-
-class Stack{
-private:
-    vector<int> *arr;
-public:
-    ~Stack(){
-        delete arr;
-    }
-    Stack(){
-        arr = new vector<int>();
-    }
-    
-    Stack(vector<int> a){
-        arr = new vector<int>(a);
-    }
-    
-    int push(int i){
-        arr->insert(arr->end(), i);
-        return i;
-    }
-    
-    int pop(){
-        int i = arr->back();
-        arr->pop_back();
-        return i;
-    }
-    
-    int getTop() const {
-        if (arr){
-            return arr->end() - arr->begin();
-        }
-        else
-        {
-            return 0;
-        }
-    }
-    
-    vector<int>* getArr() const {
-        return arr;
-    }
-    
-};
 
 
 class Queue{
     
-private:
-    Stack *stack1;
-    Stack *stack2;
-    int top;
-    
 public:
-    ~Queue(){
-        delete stack1;
-        delete stack2;
-    }
+    stack<int> *stack1;
+    stack<int> *stack2;
+    int flag; // 0 - stack1, 1 - stack2
+    int front;
+    int size;
     
     Queue(){
-        stack1 = new Stack();
-        stack2 = new Stack();
+        stack1 = new stack<int>; stack2 = new stack<int>; flag = 0; size = 0;
     }
     
     Queue(vector<int> arr){
-        stack1 = new Stack(arr);
-        stack2 = new Stack();
-        top = stack1->getArr()->front();
+        stack1 = new stack<int>; stack2 = new stack<int>; flag = 0; size = arr.size(); front = arr.front();
+        
+        for (vector<int>::iterator it = arr.begin(); it != arr.end(); it++){
+            stack1->push(*it);
+        }
     }
     
-    int getTop(){
-        return top;
+    ~Queue(){
+        delete stack1; delete stack2;
     }
     
     int enqueue(int i){
-        if (stack1->getTop() == 0 && stack2->getTop() == 0) top = i;
-        Stack *tmp = stack1->getTop() < 1 ? stack2 : stack1;
-        tmp->push(i);
-        
+        if (flag) stack2->push(i); else stack1->push(i);
+        front = size == 0? i: front; size++;
         return i;
     }
     
     int dequeue(){
+        stack<int> *tmpNonEmpty = flag?stack2:stack1;
+        stack<int> *tmpEmpty = flag?stack1:stack2;
         
-        Stack *tmpNonEmpty = stack1->getTop() < 1 ? stack2 : stack1;
-        Stack *tmpEmpty =stack1->getTop() < 1 ? stack1 : stack2;
-        
-//        cout << "Before transferring ";
-//        for (vector<int>::iterator it = tmpNonEmpty->getArr()->begin(); it!= tmpNonEmpty->getArr()->end(); it++){
-//            cout << *it << " ";
-//        }
-//        cout << " (total " << tmpNonEmpty->getTop() << ")" << endl;
-        
-        // move everything from non-empty stack to empty stack
-        int n = tmpNonEmpty->getTop();
+        // swap the stacks
+        int n = tmpNonEmpty->size();
+        int moved;
         for (int i = 0; i < n; i++){
-            tmpEmpty->push(tmpNonEmpty->pop());
-        }
-
-        // pop from the 'empty'
-        int popped = tmpEmpty->pop(); n--;
+            moved = tmpNonEmpty->top();
+            tmpNonEmpty->pop();
+            tmpEmpty->push(moved);
+        } flag = !flag; size--;
         
-        for (int i = 0; i < n; i++){
-            int tmp = tmpEmpty->pop();
-            if (i == 0) top = tmp; // take a note of the first one
-            tmpNonEmpty->push(tmp);
-        }
-        
+        // after swapping, pop from the other stack
+        int popped = tmpEmpty->top();
+        tmpEmpty->pop(); front = tmpEmpty->size() > 0?tmpEmpty->top():-999999;
         return popped;
-    }
-    
-    
-    vector<int>* getArr() const{
-        Stack *tmpNonEmpty = stack1->getTop() < 1 ? stack2 : stack1;
-        return tmpNonEmpty->getArr();
     }
 };
 
@@ -161,26 +99,6 @@ vector<string> split(const string &str) {
     return tokens;
 }
 
-ostream& operator<<(ostream &out, const Queue &s){
-    out << "(";
-    for (vector<int>::iterator it = s.getArr()->begin(); it != s.getArr()->end(); it++){
-        out << *it << " ";
-    }
-    out << ")";
-    
-    return out;
-}
-
-ostream& operator<<(ostream &out, const Stack &s){
-    out << "(";
-    for (vector<int>::iterator it = s.getArr()->begin(); it != s.getArr()->end(); it++){
-        out << *it << " ";
-    }
-    out << ")";
-    
-    return out;
-}
-
 int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
     
@@ -210,7 +128,7 @@ int main() {
             queue->dequeue();
             
         } else {
-            cout << queue->getTop() << endl;
+            cout << queue->front << endl;
         }
         // cout << " Type " << type <<" Queue: " << *queue << " Top: " << queue->getTop() << endl;
         // cout << type << " " <<endl;
