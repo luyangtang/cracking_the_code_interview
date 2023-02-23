@@ -21,9 +21,10 @@ int main(int argc, const char * argv[]) {
 //    gridChallenge::test();
 //    recursiveDigitalSum::test();
 //    newYearChaos::test();
-    queueUsingTwoStacks::test();
+//    queueUsingTwoStacks::test();
 //    mergeTwoSortedLinkedList::test();
 //    balancedBrackets::test();
+    simpleTextEditor::test();
     
     return 0;
 }

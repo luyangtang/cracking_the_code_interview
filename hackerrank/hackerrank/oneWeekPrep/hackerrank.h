@@ -13,6 +13,17 @@
 
 using namespace::std;
 
+
+namespace utils{
+string ltrim(const string &);
+string rtrim(const string &);
+vector<string> split(const string &);
+}
+
+namespace simpleTextEditor{
+void test();
+}
+
 namespace balancedBrackets{
 void test();
 }
