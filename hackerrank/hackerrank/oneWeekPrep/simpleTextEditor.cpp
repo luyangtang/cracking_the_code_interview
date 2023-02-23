@@ -44,7 +44,7 @@ public:
 
 ostream &operator<<(ostream&, const stack<vector<string>> &);
 ostream &operator<<(ostream &, const Editor &);
-
+void action(Editor *, int, string);
 
 
 
@@ -69,38 +69,44 @@ void simpleTextEditor::test(){
         int type = stoi(ltrim(rtrim(arr_temp[0])));
         string value = arr_temp[1];
         
-        switch (type) {
-            case 1:
-                {
-                    editor->append(value);
-                    break;
-                }
-            case 2:
-                {
-                    int k = stoi(ltrim(rtrim(value)));
-                    //s = deleteElement(s, k);
-                    editor->deleteElement(k);
-                    break;
-                }
-            case 3:
-                {
-                    editor->print(stoi(ltrim(rtrim(value))));
-                    break;
-                }
-            case 4:
-                {
-                    editor->undo();
-                    break;
-                }
-        }
-        cout << "Action type "<< type << ", action value is " << value << " String is now " << editor->s << endl;
-        
+        action(editor, type, value);
     }
     
     delete editor;
     
     exit(0);
     
+}
+
+
+void action(Editor *editor, int type, string value){
+
+    
+    switch (type) {
+        case 1:
+            {
+                editor->append(value);
+                break;
+            }
+        case 2:
+            {
+                int k = stoi(ltrim(rtrim(value)));
+                //s = deleteElement(s, k);
+                editor->deleteElement(k);
+                break;
+            }
+        case 3:
+            {
+                editor->print(stoi(ltrim(rtrim(value))));
+                break;
+            }
+        case 4:
+            {
+                editor->undo();
+                break;
+            }
+    }
+//    cout << "Action type "<< type << ", action value is " << value << " String is now " << editor->s << endl;
 }
 
 

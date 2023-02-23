@@ -3,61 +3,31 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-#include <string>
 #include <stack>
 using namespace std;
 
-
-class Queue{
+class Editor{
+private:
+    string unappend(int);
+    string undeleteElement(string);
+    vector<string> action; // type, string, position
     
 public:
-    stack<int> *stack1;
-    stack<int> *stack2;
-    int flag; // 0 - stack1, 1 - stack2
-    int front;
-    int size;
+    string s;
+    stack<vector<string>> memory;
     
-    Queue(){
-        stack1 = new stack<int>; stack2 = new stack<int>; flag = 0; size = 0;
-    }
+    Editor(){}
+    void undo();
+    string append(string);
+    string deleteElement(int);
     
-    Queue(vector<int> arr){
-        stack1 = new stack<int>; stack2 = new stack<int>; flag = 0; size = arr.size(); front = arr.front();
-        
-        for (vector<int>::iterator it = arr.begin(); it != arr.end(); it++){
-            stack1->push(*it);
-        }
-    }
-    
-    ~Queue(){
-        delete stack1; delete stack2;
-    }
-    
-    int enqueue(int i){
-        if (flag) stack2->push(i); else stack1->push(i);
-        front = size == 0? i: front; size++;
-        return i;
-    }
-    
-    int dequeue(){
-        stack<int> *tmpNonEmpty = flag?stack2:stack1;
-        stack<int> *tmpEmpty = flag?stack1:stack2;
-        
-        // swap the stacks
-        int n = tmpNonEmpty->size();
-        int moved;
-        for (int i = 0; i < n; i++){
-            moved = tmpNonEmpty->top();
-            tmpNonEmpty->pop();
-            tmpEmpty->push(moved);
-        } flag = !flag; size--;
-        
-        // after swapping, pop from the other stack
-        int popped = tmpEmpty->top();
-        tmpEmpty->pop(); front = tmpEmpty->size() > 0?tmpEmpty->top():-999999;
-        return popped;
-    }
+    void setAction(string, string);
+    void print(int);
 };
+
+
+void action(Editor *, int, string);
+
 
 
 string ltrim(const string &str) {
@@ -82,6 +52,8 @@ string rtrim(const string &str) {
     return s;
 }
 
+
+
 vector<string> split(const string &str) {
     vector<string> tokens;
 
@@ -99,40 +71,140 @@ vector<string> split(const string &str) {
     return tokens;
 }
 
-int main() {
-    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
-    
 
+
+
+
+int main(){
+
+    
     string n_query;
     getline(cin, n_query);
-
-    int n = stoi(ltrim(rtrim(n_query)));
-        // create a queue
-        Queue *queue = new Queue();
-
+    
+    
+    Editor *editor = new Editor();
+    
+    int n = stoi(n_query);
+    
     for (int i = 0; i < n; i++){
         string arr_temp_temp;
         getline(cin, arr_temp_temp);
-
+        
         vector<string> arr_temp = split(rtrim(arr_temp_temp));
         
         int type = stoi(ltrim(rtrim(arr_temp[0])));
         
-        
-        if (type == 1){
-            int value = stoi(ltrim(rtrim(arr_temp[1])));
-            queue->enqueue(value);
-            
-        } else if (type == 2){
-            
-            queue->dequeue();
-            
-        } else {
-            cout << queue->front << endl;
+        switch(type){
+            case 4:
+            {
+                editor->undo(); break;
+            }
+            default:
+            {
+                action(editor, type, arr_temp[1]);
+            }
         }
-        // cout << " Type " << type <<" Queue: " << *queue << " Top: " << queue->getTop() << endl;
-        // cout << type << " " <<endl;
     }
     
+    delete editor;
+    
     return 0;
+    
+}
+
+
+void action(Editor *editor, int type, string value){
+
+    
+    switch (type) {
+        case 1:
+            {
+                editor->append(value);
+                break;
+            }
+        case 2:
+            {
+                int k = stoi(ltrim(rtrim(value)));
+                //s = deleteElement(s, k);
+                editor->deleteElement(k);
+                break;
+            }
+        case 3:
+            {
+                editor->print(stoi(ltrim(rtrim(value))));
+                break;
+            }
+        case 4:
+            {
+                editor->undo();
+                break;
+            }
+    }
+//    cout << "Action type "<< type << ", action value is " << value << " String is now " << editor->s << endl;
+}
+
+
+
+
+string Editor::append(string w){
+    // type 1
+    int position = s.size();
+    s.append(w);
+    setAction("1", to_string(position));
+    memory.push(action);
+    return w;
+}
+
+string Editor::unappend(int k){
+    s = s.substr(0, k);
+    return s;
+}
+
+
+void Editor::print(int k){
+    cout << s[k - 1] << endl;
+}
+
+
+void Editor::setAction(string type, string value){
+    action = {type, value};
+}
+
+string Editor::deleteElement(int k){
+    // type 2
+    string tmp;
+    tmp = s.substr(s.size() - k, k);
+    setAction("2", tmp); memory.push(action);
+    s = s.substr(0, s.size() - k);
+    
+    return tmp;
+}
+
+
+string Editor::undeleteElement(string deleted){
+    s = s.append(deleted);
+    return deleted;
+}
+
+void Editor::undo(){
+    const vector<string> lastAction = memory.top();
+    int lastActionType = stoi(lastAction[0]);
+    string lastActionValue = lastAction[1];
+//    int position = stoi(lastAction[2]);
+    switch (lastActionType){
+        case 1:
+            {
+                unappend(stoi(lastActionValue));
+                memory.pop();
+                break;
+            }
+        case 2:
+            {
+                undeleteElement(lastActionValue);
+                memory.pop();
+                break;
+            }
+        default:
+            break;
+    }
 }

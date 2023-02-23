@@ -6,6 +6,28 @@
 #include <stack>
 using namespace std;
 
+class Editor{
+private:
+    string unappend(int);
+    string undeleteElement(string);
+    vector<string> action; // type, string, position
+    
+public:
+    string s;
+    stack<vector<string>> memory;
+    
+    Editor(){}
+    void undo();
+    string append(string);
+    string deleteElement(int);
+    
+    void setAction(string, string);
+    void print(int);
+};
+
+
+void action(Editor *, int, string);
+
 
 string ltrim(const string &str) {
     string s(str);
@@ -49,24 +71,7 @@ vector<string> split(const string &str) {
 }
 
 
-class Editor{
-private:
-    string unappend(int);
-    string undeleteElement(string, int);
-    vector<string> action; // type, string, position
-    
-public:
-    string s;
-    stack<vector<string>> memory;
-    
-    Editor(){}
-    void undo();
-    string append(string);
-    string deleteElement(int);
-    
-    void setAction(string, string, string);
-    void print(int);
-};
+
 
 
 int main(){
@@ -74,6 +79,7 @@ int main(){
     
     string n_query;
     getline(cin, n_query);
+    
     
     Editor *editor = new Editor();
     
@@ -88,29 +94,7 @@ int main(){
         int type = stoi(ltrim(rtrim(arr_temp[0])));
         string value = arr_temp[1];
         
-        switch (type) {
-            case 1:
-                {
-                    editor->append(value);
-                    break;
-                }
-            case 2:
-                {
-                    int k = stoi(ltrim(rtrim(value)));
-                    editor->deleteElement(k);
-                    break;
-                }
-            case 3:
-                {
-                    editor->print(stoi(ltrim(rtrim(value))));
-                    break;
-                }
-            case 4:
-                {
-                    editor->undo();
-                    break;
-                }
-        }
+        action(editor, type, value);
     }
     
     delete editor;
@@ -120,12 +104,44 @@ int main(){
 }
 
 
+void action(Editor *editor, int type, string value){
+
+    
+    switch (type) {
+        case 1:
+            {
+                editor->append(value);
+                break;
+            }
+        case 2:
+            {
+                int k = stoi(ltrim(rtrim(value)));
+                //s = deleteElement(s, k);
+                editor->deleteElement(k);
+                break;
+            }
+        case 3:
+            {
+                editor->print(stoi(ltrim(rtrim(value))));
+                break;
+            }
+        case 4:
+            {
+                editor->undo();
+                break;
+            }
+    }
+//    cout << "Action type "<< type << ", action value is " << value << " String is now " << editor->s << endl;
+}
+
+
+
 
 string Editor::append(string w){
     // type 1
     int position = s.size();
     s.append(w);
-    setAction("1", "", to_string(position));
+    setAction("1", to_string(position));
     memory.push(action);
     return w;
 }
@@ -141,26 +157,23 @@ void Editor::print(int k){
 }
 
 
-void Editor::setAction(string type, string value, string pos){
-    action = {type, value, pos};
+void Editor::setAction(string type, string value){
+    action = {type, value};
 }
 
 string Editor::deleteElement(int k){
     // type 2
     string tmp;
-    tmp.append(s.substr(0, s.size() - k));
-    setAction("2", s.substr(s.size() - k, k), to_string(k)); memory.push(action);
-    s = tmp;
+    tmp = s.substr(s.size() - k, k);
+    setAction("2", tmp); memory.push(action);
+    s = s.substr(0, s.size() - k);
     
     return tmp;
 }
 
 
-string Editor::undeleteElement(string deleted, int k){
-    string tmp;
-    tmp.append(s.substr(0,k-1));
-    tmp.append(deleted);
-    s = tmp;
+string Editor::undeleteElement(string deleted){
+    s = s.append(deleted);
     return deleted;
 }
 
@@ -168,19 +181,21 @@ void Editor::undo(){
     const vector<string> lastAction = memory.top();
     int lastActionType = stoi(lastAction[0]);
     string lastActionValue = lastAction[1];
-    int position = stoi(lastAction[2]);
+//    int position = stoi(lastAction[2]);
     switch (lastActionType){
         case 1:
             {
-                unappend(position);
+                unappend(stoi(lastActionValue));
                 memory.pop();
                 break;
             }
         case 2:
             {
-                undeleteElement(lastActionValue, position);
+                undeleteElement(lastActionValue);
                 memory.pop();
                 break;
             }
+        default:
+            break;
     }
 }
