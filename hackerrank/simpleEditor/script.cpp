@@ -1,31 +1,58 @@
-//
-//  simpleTextEditor.cpp
-//  hackerrank
-//
-//  Created by Luyang Tang on 22/02/2023.
-//
-
-#include <stdio.h>
-#include "hackerrank.h"
 #include <cmath>
+#include <cstdio>
 #include <vector>
 #include <iostream>
 #include <algorithm>
-#include <fstream>
 #include <stack>
-
 using namespace std;
-using namespace utils;
 
-/*
- Headers
- */
+
+string ltrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), [](auto c) {return
+            !std::isspace(c);})
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), [](auto c) {return
+            !std::isspace(c);}).base(),
+        s.end()
+    );
+
+    return s;
+}
+
+vector<string> split(const string &str) {
+    vector<string> tokens;
+
+    string::size_type start = 0;
+    string::size_type end = 0;
+
+    while ((end = str.find(" ", start)) != string::npos) {
+        tokens.push_back(str.substr(start, end - start));
+
+        start = end + 1;
+    }
+
+    tokens.push_back(str.substr(start));
+
+    return tokens;
+}
 
 
 class Editor{
 private:
     string unappend(int);
-    string undeleteElement(string);
+    string undeleteElement(string, int);
     vector<string> action; // type, string, position
     
 public:
@@ -37,24 +64,16 @@ public:
     string append(string);
     string deleteElement(int);
     
-    void setAction(string, string);
+    void setAction(string, string, string);
     void print(int);
 };
 
 
-ostream &operator<<(ostream&, const stack<vector<string>> &);
-ostream &operator<<(ostream &, const Editor &);
-
-
-
-
-void simpleTextEditor::test(){
+int main(){
 
     
-    std::ifstream input("/Users/luyangtang/Documents/cracking_the_code_interview/hackerrank/simpleEditor/testcase.txt");
-  
     string n_query;
-    getline(input, n_query);
+    getline(cin, n_query);
     
     Editor *editor = new Editor();
     
@@ -62,7 +81,7 @@ void simpleTextEditor::test(){
     
     for (int i = 0; i < n; i++){
         string arr_temp_temp;
-        getline(input, arr_temp_temp);
+        getline(cin, arr_temp_temp);
         
         vector<string> arr_temp = split(rtrim(arr_temp_temp));
         
@@ -78,7 +97,6 @@ void simpleTextEditor::test(){
             case 2:
                 {
                     int k = stoi(ltrim(rtrim(value)));
-                    //s = deleteElement(s, k);
                     editor->deleteElement(k);
                     break;
                 }
@@ -93,56 +111,21 @@ void simpleTextEditor::test(){
                     break;
                 }
         }
-        cout << "Action type "<< type << ", action value is " << value << " String is now " << editor->s << endl;
-        
     }
     
     delete editor;
     
-    exit(0);
+    return 0;
     
 }
 
-
-ostream &operator<<(ostream& out, const stack<vector<string>> &memory){
-
-    stack<vector<string>> *tmp = new stack<vector<string>>;
-    vector<string> action;
-    *tmp = memory;
-    
-    int n = memory.size();
-    if (n){
-        for (int i = 0; i < n; i++){ // loop through the stack
-            out << "(";
-            action = tmp->top();
-            // loop through the action vector
-            for (vector<string>::iterator it = action.begin(); it != action.end(); it++)
-                {
-                    out << *it << " ";
-                }
-            out << ")";
-            tmp->pop();
-        }
-    }
-    
-    delete tmp;
-    return out;
-}
-
-
-
-ostream &operator<<(ostream &out, const Editor &editor){
-    out << "Editor's current string - " << editor.s << endl;
-    out << "    Memory stack (newest at top): " << editor.memory << endl;
-    return out;
-}
 
 
 string Editor::append(string w){
     // type 1
     int position = s.size();
     s.append(w);
-    setAction("1", to_string(position));
+    setAction("1", "", to_string(position));
     memory.push(action);
     return w;
 }
@@ -158,23 +141,26 @@ void Editor::print(int k){
 }
 
 
-void Editor::setAction(string type, string value){
-    action = {type, value};
+void Editor::setAction(string type, string value, string pos){
+    action = {type, value, pos};
 }
 
 string Editor::deleteElement(int k){
     // type 2
     string tmp;
-    tmp = s.substr(s.size() - k, k);
-    setAction("2", tmp); memory.push(action);
-    s = s.substr(0, s.size() - k);
+    tmp.append(s.substr(0, s.size() - k));
+    setAction("2", s.substr(s.size() - k, k), to_string(k)); memory.push(action);
+    s = tmp;
     
     return tmp;
 }
 
 
-string Editor::undeleteElement(string deleted){
-    s = s.append(deleted);
+string Editor::undeleteElement(string deleted, int k){
+    string tmp;
+    tmp.append(s.substr(0,k-1));
+    tmp.append(deleted);
+    s = tmp;
     return deleted;
 }
 
@@ -182,21 +168,19 @@ void Editor::undo(){
     const vector<string> lastAction = memory.top();
     int lastActionType = stoi(lastAction[0]);
     string lastActionValue = lastAction[1];
-//    int position = stoi(lastAction[2]);
+    int position = stoi(lastAction[2]);
     switch (lastActionType){
         case 1:
             {
-                unappend(stoi(lastActionValue));
+                unappend(position);
                 memory.pop();
                 break;
             }
         case 2:
             {
-                undeleteElement(lastActionValue);
+                undeleteElement(lastActionValue, position);
                 memory.pop();
                 break;
             }
-        default:
-            break;
     }
 }
