@@ -20,6 +20,10 @@ string rtrim(const string &);
 vector<string> split(const string &);
 }
 
+namespace lego{
+void test();
+}
+
 namespace simpleTextEditor{
 void test();
 }

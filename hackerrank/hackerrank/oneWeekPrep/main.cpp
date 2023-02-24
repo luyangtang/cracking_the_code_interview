@@ -24,7 +24,8 @@ int main(int argc, const char * argv[]) {
 //    queueUsingTwoStacks::test();
 //    mergeTwoSortedLinkedList::test();
 //    balancedBrackets::test();
-    simpleTextEditor::test();
+//    simpleTextEditor::test();
+    lego::test();
     
     return 0;
 }
