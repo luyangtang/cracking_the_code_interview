@@ -11,6 +11,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <algorithm>
 
 using namespace::std;
 using namespace::utils;
@@ -23,45 +24,10 @@ public:
 };
 ostream &operator<< (ostream &, const vector<int> &);
 ostream &operator<< (ostream &, const vector<vector<int>> &);
+vector<vector<int>> constructRow(int);
+vector<vector<int>> brickToBinary(const vector<vector<int>> &);
 
 
-
-vector<vector<int>> constructRow(int m){
-    
-    // recursively construct a row.
-    vector<vector<int>> possibleRows;
-    
-    // base case
-    if (m == 1){
-        possibleRows.push_back({1});
-    }
-    else if (m == 0){}
-    else{
-        for (int i = 1; i <= min(4, m); i++){
-            vector<int> row;
-            
-            // put the first brick
-            row.push_back(i);
-            
-            // find out the possible arrangement of other bricks recursively
-            vector<vector <int>> remaining = constructRow(m - i);
-
-            // combine the possible arrangement to the first brick
-            if (remaining.size()){
-                for (vector<vector<int>>::iterator it = remaining.begin(); it != remaining.end(); it++)
-                    it->insert(it->begin(), row.begin(), row.end());
-                //                row.insert(row.end(), remaining.begin(), remaining.end());
-                possibleRows.insert(possibleRows.begin(), remaining.begin(), remaining.end());
-            }
-            else{
-                possibleRows.push_back(row);
-            }
-        }
-    }
-    
-
-    return possibleRows;
-}
 
 int legoBlocks(int n, int m) {
     
@@ -71,11 +37,53 @@ int legoBlocks(int n, int m) {
 }
 
 
+long layoutCount(int n, const vector<vector<int>> &binaryPossibleRows){
+//    vector<vector<int>> wall;
+    
+    cout << binaryPossibleRows;
+    
+    // base case, when there is only 1 row, then it is the number of possible rows
+    if (n == 0) return 1;
+    if (n == 1) return binaryPossibleRows.size();
+    
+    else{
+        long counter = 0;
+        
+        for (int i = 0; i < binaryPossibleRows.size(); i++){
+            // loop through each possible rows (n - 1) level and figure out what can be placed on top.
+            
+            // previous row
+            vector<int> prevRow = binaryPossibleRows[i];
+            
+            for (int j = 0; (j < binaryPossibleRows.size()) && (i != j); j++){
+                vector <int> currRow = binaryPossibleRows[j];
+//                cout << prevRow << binaryPossibleRows[j] ;
+                
+                // check if there are slits at the same position by taking sum
+                transform(currRow.begin(), currRow.end(), prevRow.begin(),
+                          currRow.begin(), std::plus<int>());
+                vector<int>::iterator maxCommonSlit = max_element(currRow.begin(), currRow.end() - 1);// ignore the last one
+//                cout << currRow << " " << *maxCommonSlit << endl; // ignore the last one
+                if (*maxCommonSlit < 2) counter++;
+            }
+            
+            cout << "Valid next row count " << counter << endl;
+           
+        }
+        
+        return counter;
+    }
+}
+
+
+
 
 void lego::test()
 {
-  
-    cout << constructRow(6);
+    int m = 3; int n = 2;
+    vector<vector<int>> binaryPossibleRows = brickToBinary(constructRow(m));
+    cout << layoutCount(n, binaryPossibleRows) << endl;
+//    cout << possibleRows << endl<< brickToBinary(possibleRows);
 //    Wall wall(2,3);
 //    wall.print();
 //
@@ -145,4 +153,68 @@ ostream &operator<< (ostream &out, const vector<vector<int>> &possibleRows){
         out << possibleRows[i] << endl;
     }
     return out;
+}
+
+
+vector<vector<int>> constructRow(int m){
+    
+    // recursively construct a row.
+    vector<vector<int>> possibleRows;
+    
+    // base case
+    if (m == 1){
+        possibleRows.push_back({1});
+    }
+    else if (m == 0){}
+    else{
+        for (int i = 1; i <= min(4, m); i++){
+            vector<int> row;
+            
+            // put the first brick
+            row.push_back(i);
+            
+            // find out the possible arrangement of other bricks recursively
+            vector<vector <int>> remaining = constructRow(m - i);
+
+            // combine the possible arrangement to the first brick
+            if (remaining.size()){
+                for (vector<vector<int>>::iterator it = remaining.begin(); it != remaining.end(); it++)
+                    it->insert(it->begin(), row.begin(), row.end());
+                //                row.insert(row.end(), remaining.begin(), remaining.end());
+                possibleRows.insert(possibleRows.begin(), remaining.begin(), remaining.end());
+            }
+            else{
+                possibleRows.push_back(row);
+            }
+        }
+    }
+    
+
+    return possibleRows;
+}
+
+
+
+vector<vector<int>> brickToBinary(const vector<vector<int>> &possibleRows){
+    // matrix[i][j] indicates if there is a slit
+    //  |   | |
+    //  1 0 1 1
+    // (2, 1)
+    
+//    cout << possibleRows;
+    vector<vector<int>> binaryPossibleRows;
+    
+    for (int i = 0; i < possibleRows.size(); i++){
+//        vector<int> binaryRow({1});
+        vector<int> binaryRow;
+        
+        for (int j = 0; j < possibleRows[i].size(); j++){
+            binaryRow.insert(binaryRow.end(), possibleRows[i][j] - 1, 0);
+            binaryRow.push_back(1);
+        }
+        
+        binaryPossibleRows.push_back(binaryRow);
+    }
+    
+    return binaryPossibleRows;
 }
